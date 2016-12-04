@@ -1,0 +1,6 @@
+ecdsa==0.13
+Fabric==1.12.0
+lxml==3.6.4
+paramiko==1.17.2
+pycrypto==2.6.1
+selenium==3.0.2
