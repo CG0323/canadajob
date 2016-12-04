@@ -31,6 +31,8 @@ def server_pull():
         run('sudo chmod -R 777 ~/canadajob')
         
 def install_modules():
-    run('source env/bin/activate')
-    run('pip install -r requirement.txt')
+    with cd('~/canadajob'):   #cd用于进入某个目录
+        run('source env/bin/activate')
+        run('pip install -r requirement.txt')
+
 

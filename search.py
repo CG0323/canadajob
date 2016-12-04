@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!./env/bin/python
 from selenium import webdriver
 from bs4 import BeautifulSoup
 import json
