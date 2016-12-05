@@ -12,10 +12,9 @@ def create_tables():
                                     charset='utf8mb4',
                                     cursorclass=pymysql.cursors.DictCursor)
         with connection.cursor() as cursor:
-            sql = """CREATE TABLE DRAFT IF NOT EXIST (
-                    POSTAT DATETIME,
-                    TITLE  CHAR(45),
-                    EMPLOYEE  CHAR(20),
+            sql = """CREATE TABLE DRAFT ( POSTAT DATETIME,
+                    TITLE CHAR(45),
+                    EMPLOYEE CHAR(20),
                     PROVINCE CHAR(20),  
                     CITY CHAR(20), 
                     URL CHAR(100) )"""
