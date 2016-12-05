@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 import json
 import datetime,time
 from time import mktime
+from orm import *
 
 class MyEncoder(json.JSONEncoder):
     def default(self, obj):
@@ -52,4 +53,5 @@ driver.get(url)
 text = driver.page_source
 jobs = []
 readPage(text, jobs)
-print jobs
+creat_tables()
+add_draft(jobs[0]["date"], jobs[0]["title"], jobs[0]["employer"], jobs[0]["city"], jobs[0]["province"], jobs[0]["url"])
