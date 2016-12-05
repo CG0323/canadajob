@@ -11,6 +11,7 @@ def create_tables():
                                     charset='utf8mb4',
                                     cursorclass=pymysql.cursors.DictCursor)
         with connection.cursor() as cursor:
+            cursor.execute('SET sql_notes = 0') 
             sql = """CREATE TABLE IF NOT EXISTS draft ( post_at DATETIME,
                     title VARCHAR(45),
                     employee VARCHAR(20),
@@ -19,7 +20,7 @@ def create_tables():
                     url VARCHAR(100) )"""
 
             cursor.execute(sql)
-
+            cursor.execute('SET sql_notes = 1') 
             connection.commit()
     
     finally:
