@@ -12,17 +12,17 @@ def create_tables():
                                     charset='utf8mb4',
                                     cursorclass=pymysql.cursors.DictCursor)
         with connection.cursor() as cursor:
-        sql = """CREATE TABLE DRAFT IF NOT EXIST (
-                POSTAT DATETIME,
-                TITLE  VARCHAR(45),
-                EMPLOYEE  VARCHAR(20),
-                PROVINCE VARCHAR(20),  
-                CITY VARCHAR(20), 
-                URL VARCHAR(100) )"""
+            sql = """CREATE TABLE DRAFT IF NOT EXIST (
+                    POSTAT DATETIME,
+                    TITLE  VARCHAR(45),
+                    EMPLOYEE  VARCHAR(20),
+                    PROVINCE VARCHAR(20),  
+                    CITY VARCHAR(20), 
+                    URL VARCHAR(100) )"""
 
-        cursor.execute(sql)
+            cursor.execute(sql)
 
-        connection.commit()
+            connection.commit()
     
     finally:
         connection.close();
