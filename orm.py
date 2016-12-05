@@ -14,13 +14,14 @@ def create_draft_table():
         with connection.cursor() as cursor:
             cursor.execute('SET sql_notes = 0') 
             sql = """CREATE TABLE IF NOT EXISTS draft ( 
-                    id INT NOT NULL auto_increment, 
+                    id INT UNSIGNED NOT NULL auto_increment, 
                     post_at DATETIME,
                     title VARCHAR(45),
                     employer VARCHAR(20),
                     province VARCHAR(20),  
                     city VARCHAR(20), 
-                    url VARCHAR(100), 
+                    url VARCHAR(100),
+                    PRIMARY KEY (id), 
                     UNIQUE (url) )"""
             cursor.execute(sql)
             cursor.execute('SET sql_notes = 1') 
