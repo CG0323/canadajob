@@ -1,5 +1,4 @@
 #!./env/bin/python
-VARCHAR(20)
 import pymysql.cursors
 
 def create_tables():
@@ -13,11 +12,11 @@ def create_tables():
                                     cursorclass=pymysql.cursors.DictCursor)
         with connection.cursor() as cursor:
             sql = """CREATE TABLE DRAFT ( POSTAT DATETIME,
-                    TITLE CHAR(45),
-                    EMPLOYEE CHAR(20),
-                    PROVINCE CHAR(20),  
-                    CITY CHAR(20), 
-                    URL CHAR(100) )"""
+                    TITLE VARCHAR(45),
+                    EMPLOYEE VARCHAR(20),
+                    PROVINCE VARCHAR(20),  
+                    CITY VARCHAR(20), 
+                    URL VARCHAR(100) )"""
 
             cursor.execute(sql)
 
