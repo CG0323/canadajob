@@ -54,4 +54,4 @@ text = driver.page_source
 jobs = []
 readPage(text, jobs)
 create_draft_table()
-add_draft(jobs[0]["date"], jobs[0]["title"], jobs[0]["employer"], jobs[0]["city"], jobs[0]["province"], jobs[0]["url"])
+add_draft(jobs[0]["date"], jobs[0]["title"], jobs[0]["employer"], jobs[0]["address"]["city"], jobs[0]["address"]["province"], jobs[0]["url"])
