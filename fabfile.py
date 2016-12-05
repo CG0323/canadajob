@@ -7,7 +7,7 @@ import time
 # env.use_ssh_config = True
 env.hosts = ['52.8.218.46']
 env.user = 'ec2-user'
-env.key_filename = '/Users/wangchun/Downloads/development/cg007.pem'
+env.key_filename = '/users/wangchun/Downloads/development/cg007.pem'
 
 # code_dir='/var/www/deploy-stage'
 # app_dir='/var/www/application'
@@ -34,5 +34,9 @@ def install_modules():
     with cd('~/canadajob'):   #cd用于进入某个目录
         run('source env/bin/activate')
         run('pip install -r requirement.txt')
+
+
+
+        
 
 
