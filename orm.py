@@ -108,7 +108,7 @@ def get_drafts_by_province(province):
     except:
         print ("Error: unable to fecth data")
 
-def set_draft_refined(draft_id):  
+def set_draft_refined(draft_id,rurl):  
     try:
         # Connect to the database
         connection = pymysql.connect(host='localhost',
@@ -118,8 +118,8 @@ def set_draft_refined(draft_id):
                                     charset='utf8mb4',
                                     cursorclass=pymysql.cursors.DictCursor)
         with connection.cursor() as cursor:
-            sql = "UPDATE draft SET refined = 1 WHERE id = %d"
-            cursor.execute(sql, draft_id)
+            sql = "UPDATE draft SET refined = 1, rurl = %s WHERE id = %d"
+            cursor.execute(sql, (rurl, draft_id)
             connection.commit()
     except:
         print "falied to update draft"
@@ -127,3 +127,25 @@ def set_draft_refined(draft_id):
     finally:
         connection.close();
 
+def save_content(draft_id, content):
+    try:
+        # Connect to the database
+        connection = pymysql.connect(host='localhost',
+                                    user='cg',
+                                    password='088583-Salahdin',
+                                    db='canadajob',
+                                    charset='utf8mb4',
+                                    cursorclass=pymysql.cursors.DictCursor)
+        with connection.cursor() as cursor:
+            sql = "INSERT IGNORE INTO content (draft_id,content) VALUES(%d,%s)"
+            data = (draft_id, content)
+            cursor.execute(sql, data)
+            connection.commit()
+    except pymysql.DataError as error:
+        code, message = error.args
+        print ">>>>>>>>>>>>>", code, message
+        connection.rollback()
+    except:
+        connection.rollback()
+    finally:
+        connection.close();

@@ -39,31 +39,34 @@ def cleanJoillico(html):
     return text
 
 
-def refine_draft(draft):
+def retrieve_content(draft):
     try:
         url = draft["url"]
         driver = webdriver.PhantomJS()
         driver.get(url)
-        current_url = driver.current_url
-        if current_url.find("neuvoo.ca") != -1:
+        rurl = driver.current_url
+        unknown = False
+        if rurl.find("neuvoo.ca") != -1:
             print "neuvoo found!"
             text = cleanNeuvoo(driver.page_source)
-        elif current_url.find("monster.ca") != -1:
+        elif rurl.find("monster.ca") != -1:
             print "monster found!"
             text = cleanMonster(driver.page_source)
-        elif current_url.find("workopolis") != -1:
+        elif rurl.find("workopolis") != -1:
             print "workopolis found!"
             text = cleanWorkopolis(driver.page_source)
-        elif current_url.find("jobillico.com") != -1:
+        elif rurl.find("jobillico.com") != -1:
             print "jobillico found!"
             text = cleanJoillico(driver.page_source)
         else:
             unknown = True
+        set_draft_refined(draft["id"], rurl)
+        save_content(draft["id"], text)
     finally:
         driver.quit()
 
 drafts = get_drafts_by_province('Quebec')
 print draft
-
-# for draft in drafts:
-#     refine_draft(draft)
+create_content_table()
+for draft in drafts:
+    retrieve_content(draft)
