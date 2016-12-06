@@ -1,6 +1,6 @@
 #!./env/bin/python
 import pymysql.cursors
-import pymysql
+import pymysql as my
 import time 
 import sys
 from urllib import quote
@@ -126,14 +126,32 @@ def get_drafts_by_province(province):
                 draft["url"]=row[6]
                 drafts.append(draft)
             return drafts;
-    except pymysql.OperationalError as e:
-        print "operation error %s",e
-    except pymysql.ProgrammingError as e:
-         print "program error %s",e
-    except pymysql.DataError as e:
-         print "Data error %s",e
-    except MySQLError as e:
-        print('Got error {!r}, errno is {}'.format(e, e.args[0]))
+    except my.DataError as e:
+        print("DataError")
+        print(e)
+    
+    except my.InternalError as e:
+        print("InternalError")
+        print(e)
+    
+    except my.IntegrityError as e:
+        print("IntegrityError")
+        print(e)
+    
+    except my.OperationalError as e:
+        print("OperationalError")
+        print(e)
+    
+    except my.NotSupportedError as e:
+        print("NotSupportedError")
+        print(e)
+    
+    except my.ProgrammingError as e:
+        print("ProgrammingError")
+        print(e)
+    
+    except :
+        print("Unknown error occurred")
 
 
 def set_draft_refined(draft_id,rurl):  
