@@ -46,7 +46,7 @@ def readPage(text, jobs):
             job["date"] = d1 - datetime.timedelta(hours=h)
         jobs.append(job); 
 
-url = 'http://neuvoo.ca/jobs/?k=.NET+Developer&l=montreal&f=&p=&r=';
+url = 'http://neuvoo.ca/jobs/?k=.NET+Developer&l=montreal&f=&p=&r='
 # url = "www.163.com"
 driver = webdriver.PhantomJS()
 driver.get(url)
