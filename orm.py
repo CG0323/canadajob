@@ -35,15 +35,14 @@ def create_draft_table():
 
 def add_draft(post_at, title, employer, province, city, url):
     try:
-        print "i am adding"
         # Connect to the database
+        print title + " from " employer
         connection = pymysql.connect(host='localhost',
                                     user='cg',
                                     password='088583-Salahdin',
                                     db='canadajob',
                                     charset='utf8mb4',
                                     cursorclass=pymysql.cursors.DictCursor)
-        print "i am adding 1"
         with connection.cursor() as cursor:
             sql = "INSERT INTO draft (post_at,title,employer,province,city,url) VALUES(%s,%s,%s,%s,%s,%s)"
             print "i am adding 2"
