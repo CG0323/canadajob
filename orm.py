@@ -5,8 +5,8 @@ import time
 def create_draft_table():
     try:
         # Connect to the database
-        # connection = pymysql.connect(host='localhost',
-        connection = pymysql.connect(host='52.8.218.46',
+        connection = pymysql.connect(host='localhost',
+        # connection = pymysql.connect(host='52.8.218.46',
                                     user='cg',
                                     password='088583-Salahdin',
                                     db='canadajob',
@@ -34,8 +34,8 @@ def create_draft_table():
 def add_draft(post_at, title, employer, province, city, url):
     try:
         # Connect to the database
-        # connection = pymysql.connect(host='localhost',
-        connection = pymysql.connect(host='52.8.218.46',
+        connection = pymysql.connect(host='localhost',
+        # connection = pymysql.connect(host='52.8.218.46',
                                     user='cg',
                                     password='088583-Salahdin',
                                     db='canadajob',

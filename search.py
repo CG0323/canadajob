@@ -45,6 +45,7 @@ def readPage(text, jobs):
             h = int(dateString.replace("h",""))
             job["date"] = d1 - datetime.timedelta(hours=h)
         jobs.append(job); 
+        add_draft(job["date"], job["title"], job["employer"], job["address"]["city"], job["address"]["province"], job["link"])
 
 url = 'http://neuvoo.ca/jobs/?k=.NET+Developer&l=montreal&f=&p=&r='
 # url = "www.163.com"
