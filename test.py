@@ -24,7 +24,6 @@ def cleanWorkopolis(html):
     main = soup.find("section", class_="job-view-content-wrapper js-job-view-header-apply")
     for script in main(["script", "style"]): # remove all javascript and stylesheet code
         script.extract()
-
     text ="\n".join(main.strings)
     return text
 
@@ -34,7 +33,6 @@ def cleanJoillico(html):
     for script in main(["script", "style"]): # remove all javascript and stylesheet code
         script.extract()
     text ="\n".join(main.strings)
-
     return text
 
 

@@ -111,6 +111,7 @@ def get_drafts_by_province(province):
 def set_draft_refined(draft_id,rurl):  
     try:
         # Connect to the database
+        print "get rurl ===== " + rurl
         connection = pymysql.connect(host='localhost',
                                     user='cg',
                                     password='088583-Salahdin',
@@ -119,7 +120,7 @@ def set_draft_refined(draft_id,rurl):
                                     cursorclass=pymysql.cursors.DictCursor)
         with connection.cursor() as cursor:
             sql = "UPDATE draft SET refined = 1, rurl = %s WHERE id = %d"
-            cursor.execute(sql, (rurl, draft_id)
+            cursor.execute(sql, (rurl, draft_id))
             connection.commit()
     except:
         print "falied to update draft"
