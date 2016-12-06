@@ -26,7 +26,7 @@ def push():
 def server_pull():
     with cd('~/canadajob'):   #cd用于进入某个目录
         run('git add --a') 
-        run('git commit') 
+        run("git commit-m 'auto commit with fabric'")
         run('git pull')  #远程操作用run
         run('sudo chmod -R 777 ~/canadajob')
         

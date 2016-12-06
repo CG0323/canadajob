@@ -1,16 +1,16 @@
 #!./env/bin/python
 import pymysql.cursors
 import time 
-
-def create_draft_table():
-    try:
-        # Connect to the database
-        connection = pymysql.connect(host='localhost',
+connection = pymysql.connect(host='localhost',
                                     user='cg',
                                     password='088583-Salahdin',
                                     db='canadajob',
                                     charset='utf8mb4',
                                     cursorclass=pymysql.cursors.DictCursor)
+def create_draft_table():
+    try:
+        # Connect to the database
+
         with connection.cursor() as cursor:
             cursor.execute('SET sql_notes = 0') 
             sql = """CREATE TABLE IF NOT EXISTS draft ( 
@@ -28,17 +28,17 @@ def create_draft_table():
             connection.commit()
     
     finally:
-        connection.close();
+        cursor.close();
 
 def add_draft(post_at, title, employer, province, city, url):
     try:
         # Connect to the database
-        connection = pymysql.connect(host='localhost',
-                                    user='cg',
-                                    password='088583-Salahdin',
-                                    db='canadajob',
-                                    charset='utf8mb4',
-                                    cursorclass=pymysql.cursors.DictCursor)
+        # connection = pymysql.connect(host='localhost',
+        #                             user='cg',
+        #                             password='088583-Salahdin',
+        #                             db='canadajob',
+        #                             charset='utf8mb4',
+        #                             cursorclass=pymysql.cursors.DictCursor)
         with connection.cursor() as cursor:
             sql = """INSERT INTO draft (post_at,title,employer,province,city,url) 
                      VALUES(%s,%s,%s,%s,%s,%s)"""
@@ -47,5 +47,5 @@ def add_draft(post_at, title, employer, province, city, url):
     except:
         connection.rollback()
     finally:
-        connection.close()
+        cursor.close();
 
