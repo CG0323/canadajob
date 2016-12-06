@@ -67,6 +67,7 @@ def retrieve_content(draft):
 
 # drafts = get_drafts_by_province('Quebec')
 drafts = get_test()
-create_content_table()
-for draft in drafts:
-    retrieve_content(draft)
+print drafts
+# create_content_table()
+# for draft in drafts:
+#     retrieve_content(draft)
