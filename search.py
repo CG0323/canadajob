@@ -25,8 +25,8 @@ def readPage(text, jobs):
         for span in spans:
             jobTitle += span.getText()
         job["title"] = jobTitle
-        # job["link"] = "http://neuvoo.ca" + link;
-        job["link"] = link;
+        job["link"] = "http://neuvoo.ca" + link;
+        # job["link"] = link;
 
         infoElement = jobElement.find("div", class_="j-info")
         employer = infoElement.find("span", itemprop="name").getText()

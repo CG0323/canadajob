@@ -18,11 +18,11 @@ def create_draft_table():
             sql = """CREATE TABLE IF NOT EXISTS draft ( 
                     id INT UNSIGNED NOT NULL auto_increment, 
                     post_at DATETIME,
-                    title VARCHAR(45),
-                    employer VARCHAR(20),
-                    province VARCHAR(20),  
-                    city VARCHAR(20), 
-                    url VARCHAR(600),
+                    title VARCHAR(50),
+                    employer VARCHAR(50),
+                    province VARCHAR(40),  
+                    city VARCHAR(40), 
+                    url VARCHAR(5000),
                     PRIMARY KEY (id), 
                     UNIQUE (url) )"""
             cursor.execute(sql)
@@ -46,7 +46,7 @@ def add_draft(post_at, title, employer, province, city, url):
         with connection.cursor() as cursor:
             sql = "INSERT INTO draft (post_at,title,employer,province,city,url) VALUES(%s,%s,%s,%s,%s,%s)"
             print "i am adding 2"
-            data = (post_at.strftime('%Y-%m-%d %H:%M:%S'),title,employer,province,city,quote(url));
+            data = (post_at.strftime('%Y-%m-%d %H:%M:%S'),title,employer,province,city,url);
             print data
             cursor.execute(sql, data)
             connection.commit()
