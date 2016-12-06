@@ -83,7 +83,6 @@ def add_draft(post_at, title, employer, province, city, url):
 
 def get_test():
     try:
-
         connection = pymysql.connect(host='localhost',
                                     user='cg',
                                     password='088583-Salahdin',
@@ -91,23 +90,14 @@ def get_test():
                                     charset='utf8mb4',
                                     cursorclass=pymysql.cursors.DictCursor)
         with connection.cursor() as cursor:
-            sql = "SELECT * FROM draft LIMIT 20"   
+            sql = "SELECT count(id) FROM draft"   
             
 
             cursor.execute(sql)
             
             results = cursor.fetchall()
             for row in results:
-                draft = {}
-                draft["id"]=row[0]
-                draft["post_at"]=row[1]
-                draft["title"]=row[2]
-                draft["employer"]=row[3]
-                draft["city"]=row[4]
-                draft["province"]=row[5]
-                draft["url"]=row[6]
-                drafts.append(draft)
-            return drafts;
+                print row
     except:
         print ("Error: unable to fecth data")
 
