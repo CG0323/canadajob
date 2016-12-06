@@ -126,7 +126,7 @@ def get_drafts_by_province(province):
                 draft["url"]=row[6]
                 drafts.append(draft)
             return drafts;
-    except Exception, e:
+    except Exception as e:
         print 'Exception error is: %s' % e
 
 def set_draft_refined(draft_id,rurl):  
