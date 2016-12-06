@@ -36,7 +36,7 @@ def create_draft_table():
 def add_draft(post_at, title, employer, province, city, url):
     try:
         # Connect to the database
-        print title + " from " employer
+        print title + " from " + employer
         connection = pymysql.connect(host='localhost',
                                     user='cg',
                                     password='088583-Salahdin',
