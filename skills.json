@@ -56,5 +56,13 @@
     "Design Pattern": ["design pattern"],
     "PHP": ["php"],
     "Django": ["django"],
-    "SilverLight": ["silverlight"]
+    "SilverLight": ["silverlight"],
+    "Cassandra":["cassandra"],
+    "Hadoop":["hadoop"],
+    "HBase":["hBase"],
+    "Flask":["flask"],
+    "OpenStack":["openstack"],
+    "Redis":["redis"],
+    "RedShift":["redshift"],
+    "MFC":["mfc"]
 }
