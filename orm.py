@@ -1,5 +1,6 @@
 #!./env/bin/python
 import pymysql.cursors
+import pymysql
 import time 
 import sys
 from urllib import quote
@@ -48,8 +49,9 @@ def add_draft(post_at, title, employer, province, city, url):
             data = (post_at.strftime('%Y-%m-%d %H:%M:%S'),title,employer,province,city,url);
             cursor.execute(sql, data)
             connection.commit()
-    except DataError as e:
-        print e
+    except pymysql.DataError as error:
+        code, message = error.args
+        print ">>>>>>>>>>>>>", code, message
         connection.rollback()
     finally:
         connection.close();
