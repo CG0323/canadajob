@@ -5,5 +5,5 @@ import datetime,time
 from time import mktime
 from orm import *
 
-drafs = get_drafts_by_province("Quebec")
+drafs = get_drafts_by_province('Quebec')
 print drafs
