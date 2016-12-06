@@ -45,15 +45,12 @@ def add_draft(post_at, title, employer, province, city, url):
                                     cursorclass=pymysql.cursors.DictCursor)
         with connection.cursor() as cursor:
             sql = "INSERT INTO draft (post_at,title,employer,province,city,url) VALUES(%s,%s,%s,%s,%s,%s)"
-            print "i am adding 2"
             data = (post_at.strftime('%Y-%m-%d %H:%M:%S'),title,employer,province,city,url);
-            print data
             cursor.execute(sql, data)
             connection.commit()
-    except:
-        print "Unexpected error:", sys.exc_info()[0]
+    except DataError as e:
+        print e
         connection.rollback()
     finally:
-        
         connection.close();
 
