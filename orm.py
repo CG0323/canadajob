@@ -91,8 +91,9 @@ def get_drafts_by_province(province):
                                     charset='utf8mb4',
                                     cursorclass=pymysql.cursors.DictCursor)
         with connection.cursor() as cursor:
-            sql = "SELECT * FROM draft WHERE province = %s and refined = %d"   
-            data = (province,0)                      
+            sql = "SELECT * FROM draft WHERE province = %s and refined = %s"   
+            data = (province,0,)  
+
             cursor.execute(sql,data)
             results = cursor.fetchall()
             for row in results:
@@ -120,8 +121,8 @@ def set_draft_refined(draft_id,rurl):
                                     charset='utf8mb4',
                                     cursorclass=pymysql.cursors.DictCursor)
         with connection.cursor() as cursor:
-            sql = "UPDATE draft SET refined = 1, rurl = %s WHERE id = %d"
-            cursor.execute(sql, (rurl, draft_id))
+            sql = "UPDATE draft SET refined = 1, rurl = %s WHERE id = %s"
+            cursor.execute(sql, (rurl, draft_id,))
             connection.commit()
     except:
         print "falied to update draft"
