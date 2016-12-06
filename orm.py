@@ -22,7 +22,7 @@ def create_draft_table():
                     employer VARCHAR(20),
                     province VARCHAR(20),  
                     city VARCHAR(20), 
-                    url VARCHAR(100),
+                    url VARCHAR(600),
                     PRIMARY KEY (id), 
                     UNIQUE (url) )"""
             cursor.execute(sql)
