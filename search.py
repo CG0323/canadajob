@@ -49,7 +49,7 @@ def readPage(text, jobs):
     
 create_draft_table()
 # url = 'http://neuvoo.ca/jobs/?k=.NET+Developer&l=montreal&f=&p=&r='
-url = "http://neuvoo.ca/jobs/?k=.net+developer&l=canada&f=&p=1&r=15&duc=&v=&source="
+url = "http://neuvoo.ca/jobs/?k=software+developer&l=canada&f=&p=1&r=15&duc=&v=&source="
 driver = webdriver.PhantomJS()
 driver.get(url)
 text = driver.page_source
