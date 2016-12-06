@@ -45,6 +45,8 @@ def retrieve_content(draft):
         url = draft["url"]
         driver = webdriver.PhantomJS() #service_args=['--ignore-ssl-errors=true'])
         driver.get(url)
+        while(url == driver.current_url):
+            time.sleep(1)
         rurl = driver.current_url
         print rurl
         return
