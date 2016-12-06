@@ -46,7 +46,8 @@ def readPage(text, jobs):
             job["date"] = d1 - datetime.timedelta(hours=h)
         jobs.append(job); 
         add_draft(job["date"], job["title"], job["employer"], job["address"]["city"], job["address"]["province"], job["link"])
-
+    
+create_draft_table()
 url = 'http://neuvoo.ca/jobs/?k=.NET+Developer&l=montreal&f=&p=&r='
 # url = "www.163.com"
 driver = webdriver.PhantomJS()
@@ -56,4 +57,4 @@ jobs = []
 readPage(text, jobs)
 # create_draft_table()
 # add_draft(jobs[0]["date"], jobs[0]["title"], jobs[0]["employer"], jobs[0]["address"]["city"], jobs[0]["address"]["province"], jobs[0]["link"])
-print jobs
+# print jobs
