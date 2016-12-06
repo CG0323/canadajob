@@ -18,13 +18,13 @@ def create_draft_table():
             sql = """CREATE TABLE IF NOT EXISTS draft ( 
                     id INT UNSIGNED NOT NULL auto_increment, 
                     post_at DATETIME,
-                    title VARCHAR(50),
-                    employer VARCHAR(50),
+                    title VARCHAR(50) NOT NULL,
+                    employer VARCHAR(50) NOT NULL,
                     province VARCHAR(40),  
                     city VARCHAR(40), 
                     url VARCHAR(700),
-                    PRIMARY KEY (id), 
-                    UNIQUE (url) )"""
+                    PRIMARY KEY (title, employer), 
+                    UNIQUE (url, id) )"""
             cursor.execute(sql)
             cursor.execute('SET sql_notes = 1') 
             connection.commit()
