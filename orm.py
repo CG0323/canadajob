@@ -126,12 +126,14 @@ def get_drafts_by_province(province):
                 draft["url"]=row[6]
                 drafts.append(draft)
             return drafts;
-    except pymysql.OperationalError, e:
+    except OperationalError as e:
         print "operation error %s",e
-    except pymysql.ProgrammingError, e:
+    except ProgrammingError as e:
          print "program error %s",e
-    except pymysql.DataError, e:
+    except DataError as e:
          print "Data error %s",e
+    except MySQLError as e:
+        print('Got error {!r}, errno is {}'.format(e, e.args[0]))
 
 
 def set_draft_refined(draft_id,rurl):  
