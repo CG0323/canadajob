@@ -12,8 +12,8 @@
     "LINQ": ["linq"],
     "Python": ["python"],
     "Javascript": ["javascript"],
-    "Angularjs": ["angular", "angularjs"],
-    "Angular2": ["anglar2"],
+    "Angularjs": ["angular", "angularjs", "angular js"],
+    "Angular2": ["anglar2","anglar 2"],
     "C++": ["c++"],
     "WPF": ["wpf", "windows presentation foundation"],
     "WCF": ["wcf", "windows communication foundation"],
@@ -32,6 +32,7 @@
     "EntityFramework": ["engityframework", "engity framework"],
     "VB": ["vb","visual basic","vb.net"],
     "Matlab": ["matlab"],
+    "Octave": ["octave"],
     "Algorithm": ["algorithm"],
     "RESTful": ["restful"],
     "Web Service": ["web service","web services"],
@@ -59,10 +60,11 @@
     "SilverLight": ["silverlight"],
     "Cassandra":["cassandra"],
     "Hadoop":["hadoop"],
-    "HBase":["hBase"],
+    "HBase":["hbase"],
     "Flask":["flask"],
     "OpenStack":["openstack"],
     "Redis":["redis"],
     "RedShift":["redshift"],
-    "MFC":["mfc"]
+    "MFC":["mfc"],
+    "SharePoint":["sharepoint", "share point"]
 }
