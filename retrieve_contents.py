@@ -10,8 +10,8 @@ def cleanNeuvoo(html):
     soup = BeautifulSoup(html,"lxml") # create a new bs4 object from the html data loaded
     print html
     main = soup.find("div", id="job-container")
-    if(main == None)
-        return ""
+    if main is None:
+        return None
     for script in main(["script", "style"]): # remove all javascript and stylesheet code
         script.extract()
     text ="\n".join(main.strings)
@@ -20,8 +20,8 @@ def cleanNeuvoo(html):
 def cleanMonster(html):
     soup = BeautifulSoup(html,"lxml") # create a new bs4 object from the html data loaded
     main = soup.find("span", id="TrackingJobBody")
-    if(main == None)
-        return ""
+    if main is None:
+        return None
     for script in main(["script", "style"]): # remove all javascript and stylesheet code
         script.extract()
     text ="\n".join(main.strings)
@@ -30,8 +30,8 @@ def cleanMonster(html):
 def cleanWorkopolis(html):
     soup = BeautifulSoup(html,"lxml") # create a new bs4 object from the html data loaded
     main = soup.find("section", class_="job-view-content-wrapper js-job-view-header-apply")
-    if(main == None)
-        return ""
+    if main is None:
+        return None
     for script in main(["script", "style"]): # remove all javascript and stylesheet code
         script.extract()
     text ="\n".join(main.strings)
@@ -40,8 +40,8 @@ def cleanWorkopolis(html):
 def cleanJoillico(html):
     soup = BeautifulSoup(html,"lxml") # create a new bs4 object from the html data loaded
     main = soup.find("div", class_="clr section jobrequirement")
-    if(main == None)
-        return ""
+    if main is None:
+        return None
     for script in main(["script", "style"]): # remove all javascript and stylesheet code
         script.extract()
     text ="\n".join(main.strings)
@@ -71,8 +71,9 @@ def retrieve_content(draft):
             text = cleanJoillico(driver.page_source)
         else:
             unknown = True
-        set_draft_refined(draft["id"], rurl)
-        save_content(draft["id"], text)
+        if text is not None:
+            set_draft_refined(draft["id"], rurl)
+            save_content(draft["id"], text)
     finally:
         driver.quit()
 
