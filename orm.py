@@ -112,7 +112,7 @@ def get_drafts_by_province(province):
         with connection.cursor() as cursor:
             sql = "SELECT * FROM draft WHERE province = %s AND refined=%s"   
             
-            cursor.execute(sql,(province,False,))
+            cursor.execute(sql,("Quebec",False,))
 
             cursor.execute(sql,data)
             
