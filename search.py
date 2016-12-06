@@ -48,7 +48,8 @@ def readPage(text, jobs):
         add_draft(job["date"], job["title"], job["employer"], job["address"]["city"], job["address"]["province"], job["link"])
     
 create_draft_table()
-url = 'http://neuvoo.ca/jobs/?k=.NET+Developer&l=montreal&f=&p=&r='
+# url = 'http://neuvoo.ca/jobs/?k=.NET+Developer&l=montreal&f=&p=&r='
+url = 'http://neuvoo.ca/jobs/?k=node.js+developer&l=montreal&f=&p=1&r=15&duc=&v=&source='
 driver = webdriver.PhantomJS()
 driver.get(url)
 text = driver.page_source
