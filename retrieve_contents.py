@@ -65,8 +65,8 @@ def retrieve_content(draft):
     finally:
         driver.quit()
 
-# drafts = get_drafts_by_province('Quebec')
-drafts = get_test()
+drafts = get_drafts_by_province("Quebec")
+# drafts = get_test()
 print drafts
 # create_content_table()
 # for draft in drafts:
