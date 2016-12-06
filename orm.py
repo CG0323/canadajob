@@ -92,7 +92,7 @@ def get_drafts_by_province(province):
                                     cursorclass=pymysql.cursors.DictCursor)
         with connection.cursor() as cursor:
             sql = "SELECT * FROM draft WHERE province = '%s' AND refined = 0"                            
-            cursor.execute(sql,city)
+            cursor.execute(sql,province)
             results = cursor.fetchall()
             for row in results:
                 draft = {}
