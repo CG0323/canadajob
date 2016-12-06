@@ -112,7 +112,7 @@ def get_drafts_by_province(province):
         with connection.cursor() as cursor:
             sql = "SELECT * FROM draft WHERE province = %s AND refined=%s"   
             
-            cursor.execute(sql,("Quebec",False,))
+            cursor.execute(sql,(province,False,))
             
             results = cursor.fetchall()
             print results
@@ -127,33 +127,10 @@ def get_drafts_by_province(province):
                 draft["url"]=row[6]
                 drafts.append(draft)
             return drafts;
-    except my.DataError as e:
-        print("DataError")
-        print(e)
-    
-    except my.InternalError as e:
-        print("InternalError")
-        print(e)
-    
-    except my.IntegrityError as e:
-        print("IntegrityError")
-        print(e)
-    
-    except my.OperationalError as e:
-        print("OperationalError")
-        print(e)
-    
-    except my.NotSupportedError as e:
-        print("NotSupportedError")
-        print(e)
-    
-    except my.ProgrammingError as e:
-        print("ProgrammingError")
-        print(e)
-    
-    except :
-        print("Unknown error occurred")
-
+    # except :
+    #     print("Unknown error occurred")
+    finally:
+        connection.close();
 
 def set_draft_refined(draft_id,rurl):  
     try:
