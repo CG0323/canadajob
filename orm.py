@@ -45,13 +45,15 @@ def add_draft(post_at, title, employer, province, city, url):
                                     charset='utf8mb4',
                                     cursorclass=pymysql.cursors.DictCursor)
         with connection.cursor() as cursor:
-            sql = "INSERT INTO draft (post_at,title,employer,province,city,url) VALUES(%s,%s,%s,%s,%s,%s)"
+            sql = "INSERT IGNORE INTO draft (post_at,title,employer,province,city,url) VALUES(%s,%s,%s,%s,%s,%s)"
             data = (post_at.strftime('%Y-%m-%d %H:%M:%S'),title,employer,province,city,url);
             cursor.execute(sql, data)
             connection.commit()
     except pymysql.DataError as error:
         code, message = error.args
         print ">>>>>>>>>>>>>", code, message
+        connection.rollback()
+    except:
         connection.rollback()
     finally:
         connection.close();
