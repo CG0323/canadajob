@@ -126,11 +126,11 @@ def get_drafts_by_province(province):
                 draft["url"]=row[6]
                 drafts.append(draft)
             return drafts;
-    except MySQLdb.OperationalError, e:
+    except pymysql.OperationalError, e:
         print "operation error %s",e
-    except MySQLdb.ProgrammingError, e:
+    except pymysql.ProgrammingError, e:
          print "program error %s",e
-    except MySQLdb.DataError, e:
+    except pymysql.DataError, e:
          print "Data error %s",e
 
 
