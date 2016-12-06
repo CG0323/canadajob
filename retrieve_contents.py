@@ -43,9 +43,11 @@ def cleanJoillico(html):
 def retrieve_content(draft):
     try:
         url = draft["url"]
-        driver = webdriver.PhantomJS(service_args=['--ignore-ssl-errors=true'])
+        driver = webdriver.PhantomJS() #service_args=['--ignore-ssl-errors=true'])
         driver.get(url)
         rurl = driver.current_url
+        print rurl
+        return
         unknown = False
         if rurl.find("neuvoo.ca") != -1:
             print "neuvoo found!"
