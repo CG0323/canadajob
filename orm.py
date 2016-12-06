@@ -35,6 +35,28 @@ def create_draft_table():
     finally:
         connection.close();
 
+def create_content_table():
+    try:
+        # Connect to the database
+        connection = pymysql.connect(host='localhost',
+                                    user='cg',
+                                    password='088583-Salahdin',
+                                    db='canadajob',
+                                    charset='utf8mb4',
+                                    cursorclass=pymysql.cursors.DictCursor)
+        with connection.cursor() as cursor:
+            cursor.execute('SET sql_notes = 0') 
+            sql = """CREATE TABLE IF NOT EXISTS content ( 
+                    draft_id INT NOT NULL,
+                    content TEXT,
+                    PRIMARY KEY (draft_id)"""
+            cursor.execute(sql)
+            cursor.execute('SET sql_notes = 1') 
+            connection.commit()
+    
+    finally:
+        connection.close();
+
 def add_draft(post_at, title, employer, province, city, url):
     try:
         # Connect to the database
@@ -69,7 +91,7 @@ def get_drafts_by_province(province):
                                     charset='utf8mb4',
                                     cursorclass=pymysql.cursors.DictCursor)
         with connection.cursor() as cursor:
-            sql = "SELECT * FROM draft WHERE province = %s AND refined = 0"                            
+            sql = "SELECT * FROM draft WHERE province = '%s' AND refined = 0"                            
             cursor.execute(sql,city)
             results = cursor.fetchall()
             for row in results:
