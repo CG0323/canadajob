@@ -1,6 +1,7 @@
 #!./env/bin/python
 import pymysql.cursors
 import time 
+import sys
 
 def create_draft_table():
     try:
