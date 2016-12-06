@@ -115,7 +115,7 @@ def get_drafts_by_province(province):
             cursor.execute(sql,(province,False,))
             
             results = cursor.fetchall()
-            print results
+            print results[0]
             for row in results:
                 draft = {}
                 draft["id"]=row[0]
