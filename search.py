@@ -26,7 +26,6 @@ def readPage(text, jobs):
             jobTitle += span.getText()
         job["title"] = jobTitle
         job["link"] = "http://neuvoo.ca" + link;
-        # job["link"] = link;
 
         infoElement = jobElement.find("div", class_="j-info")
         employer = infoElement.find("span", itemprop="name").getText()
@@ -50,12 +49,15 @@ def readPage(text, jobs):
     
 create_draft_table()
 url = 'http://neuvoo.ca/jobs/?k=.NET+Developer&l=montreal&f=&p=&r='
-# url = "www.163.com"
 driver = webdriver.PhantomJS()
 driver.get(url)
 text = driver.page_source
 jobs = []
 readPage(text, jobs)
-# create_draft_table()
-# add_draft(jobs[0]["date"], jobs[0]["title"], jobs[0]["employer"], jobs[0]["address"]["city"], jobs[0]["address"]["province"], jobs[0]["link"])
-# print jobs
+while (driver.find_element_by_xpath("//span[@class='page-next']/img").get_attribute('class') != "deactivated"):
+    driver.find_element_by_xpath("//span[@class='page-next']").click()
+    try:
+        readPage(driver.page_source, jobs)
+    except:
+        print "some error occured, skip"
+        continue
