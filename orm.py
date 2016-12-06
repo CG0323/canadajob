@@ -48,7 +48,9 @@ def add_draft(post_at, title, employer, province, city, url):
             cursor.execute(sql % (post_at.strftime('%Y-%m-%d %H:%M:%S'),title,employer,province,city,url))
             connection.commit()
     except:
+        print "Unexpected error:", sys.exc_info()[0]
         connection.rollback()
     finally:
+        
         connection.close();
 
