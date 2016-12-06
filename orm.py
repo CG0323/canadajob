@@ -24,7 +24,8 @@ def create_draft_table():
                     city VARCHAR(40), 
                     url VARCHAR(700),
                     PRIMARY KEY (title, employer), 
-                    UNIQUE (url, id) )"""
+                    KEY (id),
+                    UNIQUE (url) )"""
             cursor.execute(sql)
             cursor.execute('SET sql_notes = 1') 
             connection.commit()
