@@ -90,9 +90,9 @@ def get_test():
                                     charset='utf8mb4',
                                     cursorclass=pymysql.cursors.DictCursor)
         with connection.cursor() as cursor:
-            sql = "SELECT * FROM draft WHERE province = %s LIMIT %s"   
+            sql = "SELECT * FROM draft WHERE province = %s AND refined=%s"   
             
-            cursor.execute(sql,("Quebec",10,))
+            cursor.execute(sql,("Quebec",False,))
             
             results = cursor.fetchall()
             for row in results:
