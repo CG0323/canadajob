@@ -126,8 +126,8 @@ def get_drafts_by_province(province):
                 draft["url"]=row[6]
                 drafts.append(draft)
             return drafts;
-    except:
-        print ("Error: unable to fecth data")
+    except Exception, e:
+        print e
 
 def set_draft_refined(draft_id,rurl):  
     try:
