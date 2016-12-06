@@ -49,7 +49,7 @@ def create_content_table():
             sql = """CREATE TABLE IF NOT EXISTS content ( 
                     draft_id INT NOT NULL,
                     content TEXT,
-                    PRIMARY KEY (draft_id)"""
+                    PRIMARY KEY (draft_id))"""
             cursor.execute(sql)
             cursor.execute('SET sql_notes = 1') 
             connection.commit()
