@@ -67,9 +67,8 @@ def get_drafts_by_city(city):
                                     charset='utf8mb4',
                                     cursorclass=pymysql.cursors.DictCursor)
         with connection.cursor() as cursor:
-            sql = "SELECT * FROM draft WHERE city == %s"                            
+            sql = "SELECT * FROM draft WHERE city = %s"                            
             cursor.execute(sql,city)
-            connection.commit()
             results = cursor.fetchall()
             for row in results:
                 print row
