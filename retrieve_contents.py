@@ -10,6 +10,8 @@ def cleanNeuvoo(html):
     soup = BeautifulSoup(html,"lxml") # create a new bs4 object from the html data loaded
     print html
     main = soup.find("div", id="job-container")
+    if(main == None)
+        return ""
     for script in main(["script", "style"]): # remove all javascript and stylesheet code
         script.extract()
     text ="\n".join(main.strings)
@@ -18,6 +20,8 @@ def cleanNeuvoo(html):
 def cleanMonster(html):
     soup = BeautifulSoup(html,"lxml") # create a new bs4 object from the html data loaded
     main = soup.find("span", id="TrackingJobBody")
+    if(main == None)
+        return ""
     for script in main(["script", "style"]): # remove all javascript and stylesheet code
         script.extract()
     text ="\n".join(main.strings)
@@ -26,6 +30,8 @@ def cleanMonster(html):
 def cleanWorkopolis(html):
     soup = BeautifulSoup(html,"lxml") # create a new bs4 object from the html data loaded
     main = soup.find("section", class_="job-view-content-wrapper js-job-view-header-apply")
+    if(main == None)
+        return ""
     for script in main(["script", "style"]): # remove all javascript and stylesheet code
         script.extract()
     text ="\n".join(main.strings)
@@ -34,6 +40,8 @@ def cleanWorkopolis(html):
 def cleanJoillico(html):
     soup = BeautifulSoup(html,"lxml") # create a new bs4 object from the html data loaded
     main = soup.find("div", class_="clr section jobrequirement")
+    if(main == None)
+        return ""
     for script in main(["script", "style"]): # remove all javascript and stylesheet code
         script.extract()
     text ="\n".join(main.strings)
@@ -48,8 +56,6 @@ def retrieve_content(draft):
         while(url == driver.current_url):
             time.sleep(1)
         rurl = driver.current_url
-        print rurl
-        return
         unknown = False
         if rurl.find("neuvoo.ca") != -1:
             print "neuvoo found!"
