@@ -8,7 +8,6 @@ from orm import *
 
 def cleanNeuvoo(html):
     soup = BeautifulSoup(html,"lxml") # create a new bs4 object from the html data loaded
-    print html
     main = soup.find("div", id="job-container")
     if main is None:
         return None
@@ -82,4 +81,3 @@ drafts = get_drafts_by_province("Quebec")
 create_content_table()
 for draft in drafts:
     retrieve_content(draft)
-    break
