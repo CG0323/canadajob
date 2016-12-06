@@ -91,7 +91,7 @@ def get_drafts_by_province(province):
                                     charset='utf8mb4',
                                     cursorclass=pymysql.cursors.DictCursor)
         with connection.cursor() as cursor:
-            sql = "SELECT * FROM draft WHERE province = %s AND refined = 0"   
+            sql = 'SELECT * FROM draft WHERE province = "%s"'   
             print province                         
             cursor.execute(sql,province)
             results = cursor.fetchall()
