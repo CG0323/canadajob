@@ -2,6 +2,7 @@
 import pymysql.cursors
 import time 
 import sys
+from urllib import quote
 
 def create_draft_table():
     try:
@@ -45,7 +46,7 @@ def add_draft(post_at, title, employer, province, city, url):
         with connection.cursor() as cursor:
             sql = "INSERT INTO draft (post_at,title,employer,province,city,url) VALUES(%s,%s,%s,%s,%s,%s)"
             print "i am adding 2"
-            data = (post_at.strftime('%Y-%m-%d %H:%M:%S'),title,employer,province,city,url);
+            data = (post_at.strftime('%Y-%m-%d %H:%M:%S'),title,employer,province,city,quote(url));
             print data
             cursor.execute(sql, data)
             connection.commit()
