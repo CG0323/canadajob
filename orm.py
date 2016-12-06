@@ -115,20 +115,7 @@ def get_drafts_by_province(province):
             cursor.execute(sql,(province,False,))
             
             results = cursor.fetchall()
-            # print results[0]
-            # for row in results:
-            #     draft = {}
-            #     draft["id"]=row[0]
-            #     draft["post_at"]=row[1]
-            #     draft["title"]=row[2]
-            #     draft["employer"]=row[3]
-            #     draft["city"]=row[4]
-            #     draft["province"]=row[5]
-            #     draft["url"]=row[6]
-            #     drafts.append(draft)
             return results
-    # except :
-    #     print("Unknown error occurred")
     finally:
         connection.close();
 

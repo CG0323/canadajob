@@ -8,6 +8,7 @@ from orm import *
 
 def cleanNeuvoo(html):
     soup = BeautifulSoup(html,"lxml") # create a new bs4 object from the html data loaded
+    print html
     main = soup.find("div", id="job-container")
     for script in main(["script", "style"]): # remove all javascript and stylesheet code
         script.extract()
@@ -66,7 +67,8 @@ def retrieve_content(draft):
         driver.quit()
 
 drafts = get_drafts_by_province("Quebec")
-print drafts
+
 create_content_table()
 for draft in drafts:
     retrieve_content(draft)
+    break
