@@ -48,9 +48,6 @@ for i in range(0,19):
         driver.get(url)
         current_url = driver.current_url
         unknown = False
-        if current_url.find("neuvoo.ca") != -1:
-            print "neuvoo found!"
-            text = cleanNeuvoo(driver.page_source)
         elif current_url.find("monster.ca") != -1:
             print "monster found!"
             text = cleanMonster(driver.page_source)
@@ -60,6 +57,9 @@ for i in range(0,19):
         elif current_url.find("jobillico.com") != -1:
             print "jobillico found!"
             text = cleanJoillico(driver.page_source)
+         if current_url.find("neuvoo.ca") != -1:
+            print "neuvoo found!"
+            text = cleanNeuvoo(driver.page_source)
         else:
             unknown = True
     finally:

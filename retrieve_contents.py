@@ -10,6 +10,7 @@ def cleanNeuvoo(html):
     soup = BeautifulSoup(html,"lxml") # create a new bs4 object from the html data loaded
     main = soup.find("div", id="job-container")
     if main is None:
+        print html
         return None
     for script in main(["script", "style"]): # remove all javascript and stylesheet code
         script.extract()
@@ -56,9 +57,6 @@ def retrieve_content(draft):
             time.sleep(1)
         rurl = driver.current_url
         unknown = False
-        if rurl.find("neuvoo.ca") != -1:
-            print "neuvoo found!"
-            text = cleanNeuvoo(driver.page_source)
         elif rurl.find("monster.ca") != -1:
             print "monster found!"
             text = cleanMonster(driver.page_source)
@@ -68,6 +66,9 @@ def retrieve_content(draft):
         elif rurl.find("jobillico.com") != -1:
             print "jobillico found!"
             text = cleanJoillico(driver.page_source)
+        if rurl.find("neuvoo.ca") != -1:
+            print "neuvoo found!"
+            text = cleanNeuvoo(driver.page_source)
         else:
             unknown = True
         if text is not None:
