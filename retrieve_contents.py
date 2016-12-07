@@ -67,6 +67,7 @@ def retrieve_content(driver,draft):
         text = None
         if rurl.find("monster.ca") != -1:
             print "monster found!"
+            time.sleep(15)
             element = WebDriverWait(driver, 30).until(lambda x : x.find_element_by_id("TrackingJobBody"))
             text = cleanMonster(driver.page_source)
         elif rurl.find("workopolis") != -1 or rurl.find("click.appcast") != -1:
