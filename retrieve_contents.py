@@ -85,8 +85,9 @@ def retrieve_content(draft):
             print rurl
             print driver.page_source   
             print "==============================="
-    finally:
         driver.quit()
+    except:
+        print "error ooopssss"
 
 drafts = get_drafts_by_province("Quebec")
 
