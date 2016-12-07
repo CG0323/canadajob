@@ -70,12 +70,10 @@ def retrieve_content(driver,draft):
             element = WebDriverWait(driver, 30).until(lambda x : x.find_element_by_id("TrackingJobBody"))
             text = cleanMonster(driver.page_source)
         elif rurl.find("workopolis") != -1 or rurl.find("click.appcast") != -1:
-            print "workopolis found!"
-            time.sleep(15)
-            print driver.page_source
-            # element = WebDriverWait(driver, 30).until(lambda x : x.find_element_by_class_name("job-view-content-wrapper js-job-view-header-apply"))
-            element = WebDriverWait(driver, 30).until(lambda x : x.find_element_by_css_selector(".job-view-content-wrapper.js-job-view-header-apply"))
-            text = cleanWorkopolis(driver.page_source)
+            print "workopolis found! skip it"
+            text = None
+            # element = WebDriverWait(driver, 30).until(lambda x : x.find_element_by_css_selector(".job-view-content-wrapper.js-job-view-header-apply"))
+            # text = cleanWorkopolis(driver.page_source)
         elif rurl.find("jobillico.com") != -1:
             print "jobillico found!"
             # element = WebDriverWait(driver, 30).until(lambda x : x.find_element_by_class_name("clr section jobrequirement"))
@@ -89,14 +87,15 @@ def retrieve_content(driver,draft):
             unknown = True
         if text is not None:
             save_content(draft["id"], text)
-            set_draft_refined(draft["id"], rurl)
         else:
             print "=======failed to load page====="
             print rurl
             print "==============================="
+        set_draft_refined(draft["id"], rurl)
         # driver.quit()
     except TimeoutException:
-         print "time out occured"
+        set_draft_refined(draft["id"], rurl)
+        print "time out occured"
     # finally:
     #     if driver is not None:
     #         driver.quit()
