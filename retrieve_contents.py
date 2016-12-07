@@ -71,13 +71,16 @@ def retrieve_content(draft):
         else:
             unknown = True
         if text is not None:
-            set_draft_refined(draft["id"], rurl)
             save_content(draft["id"], text)
+            set_draft_refined(draft["id"], rurl)   
     finally:
         driver.quit()
 
 drafts = get_drafts_by_province("Quebec")
 
 create_content_table()
+count = 1
 for draft in drafts:
+    print "handle draft No: " + str(count)
+    count = count + 1
     retrieve_content(draft)

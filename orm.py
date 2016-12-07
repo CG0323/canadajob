@@ -153,11 +153,11 @@ def save_content(draft_id, content):
             data = (draft_id, content)
             cursor.execute(sql, data)
             connection.commit()
-    except pymysql.DataError as error:
-        code, message = error.args
-        print ">>>>>>>>>>>>>", code, message
-        connection.rollback()
-    except:
-        connection.rollback()
+    # except pymysql.DataError as error:
+    #     code, message = error.args
+    #     print ">>>>>>>>>>>>>", code, message
+    #     connection.rollback()
+    # except:
+    #     connection.rollback()
     finally:
         connection.close();
