@@ -58,8 +58,8 @@ def retrieve_content(driver,draft):
         start = datetime.now()
         while(url == driver.current_url or "job.php?" in driver.current_url):
             time.sleep(1)
-            if(datetime.now() - start).seconds > 20
-            break
+            if(datetime.now() - start).seconds > 20:
+                break
         rurl = driver.current_url
         unknown = False
         text = None
