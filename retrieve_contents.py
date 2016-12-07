@@ -73,7 +73,7 @@ def retrieve_content(draft):
         if text is not None:
             save_content(draft["id"], text)
             set_draft_refined(draft["id"], rurl)
-        else
+        else:
             print rurl
             print driver.page_source   
     finally:
