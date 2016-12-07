@@ -72,7 +72,7 @@ def retrieve_content(driver,draft):
             text = cleanMonster(driver.page_source)
         elif rurl.find("workopolis") != -1 or rurl.find("click.appcast") != -1:
             print "workopolis found!"
-            print driver.page_source
+            time.sleep(15)
             # element = WebDriverWait(driver, 30).until(lambda x : x.find_element_by_class_name("job-view-content-wrapper js-job-view-header-apply"))
             element = WebDriverWait(driver, 30).until(lambda x : x.find_element_by_css_selector(".job-view-content-wrapper.js-job-view-header-apply"))
             text = cleanWorkopolis(driver.page_source)
