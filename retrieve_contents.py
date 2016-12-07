@@ -49,13 +49,10 @@ def cleanJoillico(html):
     return text
 
 
-def retrieve_content(draft):
-    driver = None
+def retrieve_content(driver draft):
     try:
         url = draft["url"]
         print url
-        
-        driver = webdriver.PhantomJS()
          #service_args=['--ignore-ssl-errors=true'])
         driver.get(url)
         while(url == driver.current_url or "job.php?" in driver.current_url):
@@ -98,8 +95,9 @@ def retrieve_content(draft):
 drafts = get_drafts_by_province("Quebec")
 
 create_content_table()
+driver = webdriver.PhantomJS()
 count = 1
 for draft in drafts:
     print "handle draft No: " + str(count)
     count = count + 1
-    retrieve_content(draft)
+    retrieve_content(driver,draft)
