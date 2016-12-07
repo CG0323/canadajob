@@ -50,9 +50,11 @@ def cleanJoillico(html):
 
 
 def retrieve_content(draft):
+    driver = None
     try:
         url = draft["url"]
         print url
+        
         driver = webdriver.PhantomJS()
          #service_args=['--ignore-ssl-errors=true'])
         driver.get(url)
@@ -90,7 +92,8 @@ def retrieve_content(draft):
     except TimeoutException:
          print "time out occured"
     finally:
-        driver.quit()
+        if driver is not None:
+            driver.quit()
 
 drafts = get_drafts_by_province("Quebec")
 
