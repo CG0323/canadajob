@@ -59,6 +59,7 @@ def retrieve_content(draft):
             time.sleep(1)
         rurl = driver.current_url
         unknown = False
+        text = None
         if rurl.find("monster.ca") != -1:
             print "monster found!"
             element = WebDriverWait(driver, 30).until(lambda x : x.find_element_by_id("TrackingJobBody"))
