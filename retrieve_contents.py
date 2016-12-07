@@ -49,7 +49,7 @@ def cleanJoillico(html):
     return text
 
 
-def retrieve_content(driver draft):
+def retrieve_content(driver,draft):
     try:
         url = draft["url"]
         print url
