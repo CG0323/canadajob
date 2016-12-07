@@ -71,11 +71,11 @@ def retrieve_content(driver,draft):
             text = cleanMonster(driver.page_source)
         elif rurl.find("workopolis") != -1 or rurl.find("click.appcast") != -1:
             print "workopolis found!"
-            element = WebDriverWait(driver, 30).until(lambda x : x.find_element_by_class("job-view-content-wrapper js-job-view-header-apply"))
+            element = WebDriverWait(driver, 30).until(lambda x : x.find_element_by_class_name("job-view-content-wrapper js-job-view-header-apply"))
             text = cleanWorkopolis(driver.page_source)
         elif rurl.find("jobillico.com") != -1:
             print "jobillico found!"
-            element = WebDriverWait(driver, 30).until(lambda x : x.find_element_by_class("clr section jobrequirement"))
+            element = WebDriverWait(driver, 30).until(lambda x : x.find_element_by_class_name("clr section jobrequirement"))
             text = cleanJoillico(driver.page_source)
         elif rurl.find("neuvoo.ca") != -1:
             print "neuvoo found!"
