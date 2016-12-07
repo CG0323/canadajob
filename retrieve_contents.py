@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import datetime,time
 from time import mktime
 from orm import *
-# from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support.ui import WebDriverWait
 
 
 def cleanNeuvoo(html):
