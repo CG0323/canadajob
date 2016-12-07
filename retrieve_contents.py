@@ -86,8 +86,8 @@ def retrieve_content(draft):
             print rurl
             print "==============================="
         # driver.quit()
-    # except:
-    #     print "error ooopssss"
+    except selenium.common.exceptions.TimeoutException as e:
+         print "time out occured"
     finally:
         driver.quit()
 
