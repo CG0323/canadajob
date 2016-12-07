@@ -67,7 +67,7 @@ def retrieve_content(driver,draft):
         text = None
         if rurl.find("monster.ca") != -1:
             print "monster found!"
-            element = WebDriverWait(driver, 30).until(lambda x : x.find_element_by_id("TrackingJobBody"))
+            element = WebDriverWait(driver, 5).until(lambda x : x.find_element_by_id("TrackingJobBody"))
             text = cleanMonster(driver.page_source)
         elif rurl.find("workopolis") != -1 or rurl.find("click.appcast") != -1:
             print "workopolis found! skip it"
@@ -77,11 +77,11 @@ def retrieve_content(driver,draft):
         elif rurl.find("jobillico.com") != -1:
             print "jobillico found!"
             # element = WebDriverWait(driver, 30).until(lambda x : x.find_element_by_class_name("clr section jobrequirement"))
-            element = WebDriverWait(driver, 30).until(lambda x : x.find_element_by_css_selector(".clr.section.jobrequirement"))
+            element = WebDriverWait(driver, 5).until(lambda x : x.find_element_by_css_selector(".clr.section.jobrequirement"))
             text = cleanJoillico(driver.page_source)
         elif rurl.find("neuvoo.ca") != -1:
             print "neuvoo found!"
-            element = WebDriverWait(driver, 30).until(lambda x : x.find_element_by_id("job-container"))
+            element = WebDriverWait(driver, 10).until(lambda x : x.find_element_by_id("job-container"))
             text = cleanNeuvoo(driver.page_source)
         else:
             unknown = True
