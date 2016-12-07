@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import datetime,time
 from time import mktime
 from orm import *
-from selenium.webdriver.support.ui import WebDriverWait
+# from selenium.webdriver.support.ui import WebDriverWait
 
 
 def cleanNeuvoo(html):
@@ -61,19 +61,19 @@ def retrieve_content(draft):
         unknown = False
         if rurl.find("monster.ca") != -1:
             print "monster found!"
-            element = WebDriverWait(driver, 30).until(lambda x : x.find_element_by_id("TrackingJobBody"))
+            # element = WebDriverWait(driver, 30).until(lambda x : x.find_element_by_id("TrackingJobBody"))
             text = cleanMonster(driver.page_source)
         elif rurl.find("workopolis") != -1:
             print "workopolis found!"
-            element = WebDriverWait(driver, 30).until(lambda x : x.find_element_by_class("job-view-content-wrapper js-job-view-header-apply"))
+            # element = WebDriverWait(driver, 30).until(lambda x : x.find_element_by_class("job-view-content-wrapper js-job-view-header-apply"))
             text = cleanWorkopolis(driver.page_source)
         elif rurl.find("jobillico.com") != -1:
             print "jobillico found!"
-            element = WebDriverWait(driver, 30).until(lambda x : x.find_element_by_class("clr section jobrequirement"))
+            # element = WebDriverWait(driver, 30).until(lambda x : x.find_element_by_class("clr section jobrequirement"))
             text = cleanJoillico(driver.page_source)
         elif rurl.find("neuvoo.ca") != -1:
             print "neuvoo found!"
-            element = WebDriverWait(driver, 30).until(lambda x : x.find_element_by_id("job-container"))
+            # element = WebDriverWait(driver, 30).until(lambda x : x.find_element_by_id("job-container"))
             text = cleanNeuvoo(driver.page_source)
         else:
             unknown = True
