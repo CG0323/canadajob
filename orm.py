@@ -100,6 +100,26 @@ def get_test():
     except:
         print ("Error: unable to fecth data")
 
+def get_drafts():  
+    try:
+        drafts = []
+        connection = pymysql.connect(host='localhost',
+                                    user='cg',
+                                    password='088583-Salahdin',
+                                    db='canadajob',
+                                    charset='utf8mb4',
+                                    cursorclass=pymysql.cursors.DictCursor)
+        with connection.cursor() as cursor:
+            sql = "SELECT * FROM draft WHERE refined=%s"   
+            
+            cursor.execute(sql,(False,))
+            
+            results = cursor.fetchall()
+            return results
+    finally:
+        connection.close();
+
+
 def get_drafts_by_province(province):  
     try:
         drafts = []

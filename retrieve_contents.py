@@ -100,7 +100,7 @@ def retrieve_content(driver,draft):
     #     if driver is not None:
     #         driver.quit()
 
-drafts = get_drafts_by_province("Quebec")
+drafts = get_drafts()
 
 create_content_table()
 driver = webdriver.PhantomJS()
