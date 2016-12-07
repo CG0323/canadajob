@@ -149,7 +149,7 @@ def save_content(draft_id, content):
                                     charset='utf8mb4',
                                     cursorclass=pymysql.cursors.DictCursor)
         with connection.cursor() as cursor:
-            sql = "INSERT IGNORE INTO content (draft_id,content) VALUES(%d,%s)"
+            sql = "INSERT IGNORE INTO content (draft_id,content) VALUES(%s,%s)"
             data = (draft_id, content)
             cursor.execute(sql, data)
             connection.commit()
