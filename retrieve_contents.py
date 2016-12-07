@@ -57,7 +57,7 @@ def retrieve_content(draft):
             time.sleep(1)
         rurl = driver.current_url
         unknown = False
-        elif rurl.find("monster.ca") != -1:
+        if rurl.find("monster.ca") != -1:
             print "monster found!"
             text = cleanMonster(driver.page_source)
         elif rurl.find("workopolis") != -1:
@@ -66,7 +66,7 @@ def retrieve_content(draft):
         elif rurl.find("jobillico.com") != -1:
             print "jobillico found!"
             text = cleanJoillico(driver.page_source)
-        if rurl.find("neuvoo.ca") != -1:
+        elif rurl.find("neuvoo.ca") != -1:
             print "neuvoo found!"
             text = cleanNeuvoo(driver.page_source)
         else:
