@@ -105,7 +105,8 @@ drafts = get_drafts_by_province("Quebec")
 create_content_table()
 driver = webdriver.PhantomJS()
 count = 1
+total = len(drafts)
 for draft in drafts:
-    print "handle draft No: " + str(count)
+    print "handle draft No: " + str(count) + "/" + str(total)
     count = count + 1
     retrieve_content(driver,draft)
