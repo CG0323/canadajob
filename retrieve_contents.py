@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import datetime,time
 from time import mktime
 from orm import *
-from  selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support.ui import WebDriverWait
 
 
 def cleanNeuvoo(html):
@@ -49,9 +49,10 @@ def cleanJoillico(html):
 
 
 def retrieve_content(draft):
-    url = draft["url"]
-    driver = webdriver.PhantomJS()
     try:
+        url = draft["url"]
+        print url
+        driver = webdriver.PhantomJS()
          #service_args=['--ignore-ssl-errors=true'])
         driver.get(url)
         while(url == driver.current_url or "job.php?" in driver.current_url):
@@ -80,8 +81,10 @@ def retrieve_content(draft):
             save_content(draft["id"], text)
             set_draft_refined(draft["id"], rurl)
         else:
+            print "=======failed to load page====="
             print rurl
             print driver.page_source   
+            print "==============================="
     finally:
         driver.quit()
 
