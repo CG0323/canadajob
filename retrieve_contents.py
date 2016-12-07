@@ -72,7 +72,7 @@ def retrieve_content(draft):
             text = cleanJoillico(driver.page_source)
         elif rurl.find("neuvoo.ca") != -1:
             print "neuvoo found!"
-            element = WebDriverWait(driver, 30).until(lambda x : x.find_element_by_id("container"))
+            element = WebDriverWait(driver, 30).until(lambda x : x.find_element_by_id("job-container"))
             text = cleanNeuvoo(driver.page_source)
         else:
             unknown = True
