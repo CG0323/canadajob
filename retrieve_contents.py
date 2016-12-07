@@ -94,7 +94,7 @@ def retrieve_content(driver,draft):
         set_draft_refined(draft["id"], rurl)
         # driver.quit()
     except TimeoutException:
-        set_draft_refined(draft["id"], rurl)
+        set_draft_refined(draft["id"], "")
         print "time out occured"
     # finally:
     #     if driver is not None:
