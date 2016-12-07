@@ -10,7 +10,6 @@ def cleanNeuvoo(html):
     soup = BeautifulSoup(html,"lxml") # create a new bs4 object from the html data loaded
     main = soup.find("div", id="job-container")
     if main is None:
-        print html
         return None
     for script in main(["script", "style"]): # remove all javascript and stylesheet code
         script.extract()
@@ -73,7 +72,10 @@ def retrieve_content(draft):
             unknown = True
         if text is not None:
             save_content(draft["id"], text)
-            set_draft_refined(draft["id"], rurl)   
+            set_draft_refined(draft["id"], rurl)
+        else
+            print rurl
+            print driver.page_source   
     finally:
         driver.quit()
 
