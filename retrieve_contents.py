@@ -88,9 +88,9 @@ def retrieve_content(driver,draft):
         # driver.quit()
     except TimeoutException:
          print "time out occured"
-    finally:
-        if driver is not None:
-            driver.quit()
+    # finally:
+    #     if driver is not None:
+    #         driver.quit()
 
 drafts = get_drafts_by_province("Quebec")
 
