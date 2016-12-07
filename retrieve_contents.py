@@ -55,6 +55,7 @@ def retrieve_content(driver,draft):
         url = draft["url"]
         print url
          #service_args=['--ignore-ssl-errors=true'])
+        driver.set_page_load_timeout(30)
         driver.get(url)
         start = datetime.now()
         while(url == driver.current_url or "job.php?" in driver.current_url):
@@ -68,7 +69,7 @@ def retrieve_content(driver,draft):
             print "monster found!"
             element = WebDriverWait(driver, 30).until(lambda x : x.find_element_by_id("TrackingJobBody"))
             text = cleanMonster(driver.page_source)
-        elif rurl.find("workopolis") != -1:
+        elif rurl.find("workopolis") != -1 or rurl.find("click.appcast") != -1:
             print "workopolis found!"
             element = WebDriverWait(driver, 30).until(lambda x : x.find_element_by_class("job-view-content-wrapper js-job-view-header-apply"))
             text = cleanWorkopolis(driver.page_source)

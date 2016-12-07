@@ -66,5 +66,6 @@
     "Redis":["redis"],
     "RedShift":["redshift"],
     "MFC":["mfc"],
-    "SharePoint":["sharepoint", "share point"]
+    "SharePoint":["sharepoint", "share point"],
+    "Prism":["prism"]
 }
