@@ -5,6 +5,7 @@ import datetime,time
 from time import mktime
 from orm import *
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.common.exceptions import TimeoutException
 
 
 def cleanNeuvoo(html):
@@ -86,7 +87,7 @@ def retrieve_content(draft):
             print rurl
             print "==============================="
         # driver.quit()
-    except selenium.common.exceptions.TimeoutException as e:
+    except TimeoutException:
          print "time out occured"
     finally:
         driver.quit()
