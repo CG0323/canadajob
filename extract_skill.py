@@ -36,7 +36,7 @@ with open('skill-reg.json') as infile:
 create_job_table()
 create_job_skill_table()
 contents = get_contents()
-
+print len(contents)
 
 
 for content in contents:
