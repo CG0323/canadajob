@@ -76,12 +76,6 @@ def add_draft(read_at, post_at, month, title, employer, province, city, url):
             data = (read_at.strftime('%Y-%m-%d %H:%M:%S'), post_at.strftime('%Y-%m-%d %H:%M:%S'),month,title,employer,province,city,url,False)
             cursor.execute(sql, data)
             connection.commit()
-    # except pymysql.DataError as error:
-    #     code, message = error.args
-    #     print ">>>>>>>>>>>>>", code, message
-    #     connection.rollback()
-    # except:
-    #     connection.rollback()
     finally:
         connection.close();
 
@@ -175,6 +169,46 @@ def save_content(draft_id, content):
         with connection.cursor() as cursor:
             sql = "INSERT IGNORE INTO content (draft_id,content) VALUES(%s,%s)"
             data = (draft_id, content)
+            cursor.execute(sql, data)
+            connection.commit()
+    finally:
+        connection.close();
+    
+def create_skill_table():
+    try:
+        # Connect to the database
+        connection = pymysql.connect(host='localhost',
+                                    user='cg',
+                                    password='088583-Salahdin',
+                                    db='canadajob',
+                                    charset='utf8mb4',
+                                    cursorclass=pymysql.cursors.DictCursor)
+        with connection.cursor() as cursor:
+            cursor.execute('SET sql_notes = 0') 
+            sql = """CREATE TABLE IF NOT EXISTS skill ( 
+                    name INT NOT NULL,
+                    keywords VARCHAR(200),
+                    is_reg BOOLEAN,
+                    PRIMARY KEY (name))"""
+            cursor.execute(sql)
+            cursor.execute('SET sql_notes = 1') 
+            connection.commit()
+    
+    finally:
+        connection.close();
+
+def add_skill(name, keywords, is_reg):
+    try:
+        # Connect to the database
+        connection = pymysql.connect(host='localhost',
+                                    user='cg',
+                                    password='088583-Salahdin',
+                                    db='canadajob',
+                                    charset='utf8mb4',
+                                    cursorclass=pymysql.cursors.DictCursor)
+        with connection.cursor() as cursor:
+            sql = "INSERT IGNORE INTO skill (name,keywords,is_reg) VALUES(%s,%s,%s)"
+            data = (name, keywords, is_reg)
             cursor.execute(sql, data)
             connection.commit()
     finally:

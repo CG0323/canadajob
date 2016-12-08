@@ -73,5 +73,6 @@
     "Embedded": ["embedded"],
     "RTOS": ["rtos"],
     "Full Stack": ["full stack"],
-    "Scala": ["scala"]
+    "Scala": ["scala"],
+    "WebPack": ["webpack"]
 }
