@@ -5,9 +5,11 @@ import codecs
 import re
 from orm import *
 
-def extractSkills(text, skillMap, skillReg):
+def extractSkills(text, skillMap, skillReg, log):
     skills = []
     for (k,v) in skillMap.items():
+        if log:
+            print v
         if any(keyword in text for keyword in v):
             skills.append(k)
     for (k,v) in skillReg.items():
@@ -41,13 +43,11 @@ print len(contents)
 
 for content in contents:
     text = content["content"]
-    skills = extractSkills(text,skillMap, skillReg)
+    log = False
     if content["draft_id"] == 200:
-        print skillMap
-        print 'skills==========================='
-        print skills
-        print 'text==========================='
-        print text
+        log = True
+    skills = extractSkills(text,skillMap, skillReg,log)
+
     # set_content_analyzed(content["draft_id"])
     # if(len(skills) > 1):
     #     add_job(content["draft_id"])
