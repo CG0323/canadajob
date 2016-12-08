@@ -188,8 +188,8 @@ def save_content(draft_id, content):
                                     charset='utf8mb4',
                                     cursorclass=pymysql.cursors.DictCursor)
         with connection.cursor() as cursor:
-            sql = "INSERT IGNORE INTO content (draft_id,content) VALUES(%s,%s)"
-            data = (draft_id, content)
+            sql = "INSERT IGNORE INTO content (draft_id,content,analyzed) VALUES(%s,%s,%s)"
+            data = (draft_id, content, False)
             cursor.execute(sql, data)
             connection.commit()
     finally:
@@ -205,9 +205,9 @@ def get_contents():
                                     charset='utf8mb4',
                                     cursorclass=pymysql.cursors.DictCursor)
         with connection.cursor() as cursor:
-            sql = "SELECT * FROM content WHERE analyzed!=%s"   
+            sql = "SELECT * FROM content WHERE analyzed=%s"   
             
-            cursor.execute(sql,(True,))
+            cursor.execute(sql,(False,))
             
             results = cursor.fetchall()
             return results
