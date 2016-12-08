@@ -75,12 +75,12 @@ def add_draft(read_at, post_at, title, employer, province, city, url):
             data = (read_at.strftime('%Y-%m-%d %H:%M:%S'), post_at.strftime('%Y-%m-%d %H:%M:%S'),title,employer,province,city,url,False)
             cursor.execute(sql, data)
             connection.commit()
-    except pymysql.DataError as error:
-        code, message = error.args
-        print ">>>>>>>>>>>>>", code, message
-        connection.rollback()
-    except:
-        connection.rollback()
+    # except pymysql.DataError as error:
+    #     code, message = error.args
+    #     print ">>>>>>>>>>>>>", code, message
+    #     connection.rollback()
+    # except:
+    #     connection.rollback()
     finally:
         connection.close();
 
