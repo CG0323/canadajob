@@ -186,7 +186,7 @@ def create_skill_table():
         with connection.cursor() as cursor:
             cursor.execute('SET sql_notes = 0') 
             sql = """CREATE TABLE IF NOT EXISTS skill ( 
-                    name INT NOT NULL,
+                    name VARCHAR(20) NOT NULL,
                     keywords VARCHAR(200),
                     is_reg BOOLEAN,
                     PRIMARY KEY (name))"""
