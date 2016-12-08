@@ -44,7 +44,7 @@ def readPage(text):
             h = int(dateString.replace("h",""))
             job["date"] = d1 - datetime.timedelta(hours=h)
         
-        add_draft(job["date"], job["title"], job["employer"], job["address"]["province"], job["address"]["city"], job["link"])
+        add_draft(d1, job["date"], job["title"], job["employer"], job["address"]["province"], job["address"]["city"], job["link"])
     
 create_draft_table()
 
