@@ -13,7 +13,7 @@ def extractSkills(text, skillMap, skillReg, log):
         for keyword in v:
             if keyword in text:
                 print k
-                skill.append(k)
+                skills.append(k)
                 break
     for (k,v) in skillReg.items():
         pattern = re.compile(v)
