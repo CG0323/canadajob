@@ -3,17 +3,17 @@ from crontab import CronTab
 
 cron  = CronTab(user=True)
 
-# job  = cron.new(command='cd ~/canadajob;echo hello > ./test.txt')
-jobs = []
-for job in cron:
-    jobs.append(job);
-for job in jobs:
-    cron.remove(job)
+job_daily  = cron.new(command='cd ~/canadajob;source env/bin/activate;./daily_task.py',comment='job_daily')
+
+job_daily.every_reboot()
+
+job_daily.enable()
+
+job_hourly = cron.new(command='cd ~/canadajob;source env/bin/activate;./hourly_task.py',comment='job_hourly')
+
+job_hourly.hour.every(1)
+
+job_hourly.enable()
 
 cron.write()
-# job.minute.every(1)
-
-# job.enable()
-# cron.write()
-# if cron.render():
-#     print cron.render()
+cron.render()
