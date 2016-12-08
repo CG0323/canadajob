@@ -8,10 +8,13 @@ from orm import *
 def extractSkills(text, skillMap, skillReg, log):
     skills = []
     for (k,v) in skillMap.items():
-        if log:
-            print v
-        if any(keyword in text for keyword in v):
-            skills.append(k)
+        # if any(keyword in text for keyword in v):
+        #     skills.append(k)
+        for keyword in v:
+            if keyword in text:
+                print k
+                skill.append(k)
+                break
     for (k,v) in skillReg.items():
         pattern = re.compile(v)
         match = pattern.search(text)
