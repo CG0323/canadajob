@@ -46,14 +46,8 @@ for content in contents:
     if content["draft_id"] == 200:
         log = True
     skills = extractSkills(text,skillMap, skillReg,log)
-    print skills
-    # set_content_analyzed(content["draft_id"])
-    # if(len(skills) > 1):
-    #     add_job(content["draft_id"])
-    #     add_job_skills(content["draft_id"], skills)
+    set_content_analyzed(content["draft_id"])
+    if(len(skills) > 1):
+        add_job(content["draft_id"])
+        add_job_skills(content["draft_id"], skills)
 
-# for i in range(0,16):
-#     fileName = str(i)+".txt";
-#     with codecs.open(fileName, encoding='utf-8') as f:
-#         text = f.read().lower()
-#         skills = extractSkills(text,skillMap, skillReg)
