@@ -205,9 +205,9 @@ def get_contents():
                                     charset='utf8mb4',
                                     cursorclass=pymysql.cursors.DictCursor)
         with connection.cursor() as cursor:
-            sql = "SELECT * FROM content WHERE analyzed=%s"   
+            sql = "SELECT * FROM content WHERE analyzed!=%s"   
             
-            cursor.execute(sql,(False,))
+            cursor.execute(sql,(True,))
             
             results = cursor.fetchall()
             return results
