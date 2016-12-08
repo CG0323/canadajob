@@ -80,6 +80,7 @@ def retrieve_content(driver,draft):
             element = WebDriverWait(driver, 5).until(lambda x : x.find_element_by_css_selector(".clr.section.jobrequirement"))
             text = cleanJoillico(driver.page_source)
         elif rurl.find("neuvoo.ca") != -1:
+            print rurl
             print "neuvoo found!"
             time.sleep(5)
             element = WebDriverWait(driver, 5).until(lambda x : x.find_element_by_id("job-container"))
