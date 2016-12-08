@@ -30,7 +30,7 @@ with open('skill-reg.json') as infile:
     skillReg = json.load(infile)
     for (k,v) in skillReg.items():
         name = k
-        keywords = ",".join(v)
+        keywords = v
         add_skill(name,keywords,True)
 # for i in range(0,16):
 #     fileName = str(i)+".txt";
