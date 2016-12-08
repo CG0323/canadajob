@@ -71,7 +71,7 @@ def add_draft(read_at, post_at, title, employer, province, city, url):
                                     charset='utf8mb4',
                                     cursorclass=pymysql.cursors.DictCursor)
         with connection.cursor() as cursor:
-            sql = "INSERT IGNORE INTO draft (read_at,post_at,title,employer,province,city,url,refined) VALUES(%s,%s,%s,%s,%s,%s)"
+            sql = "INSERT IGNORE INTO draft (read_at,post_at,title,employer,province,city,url,refined) VALUES(%s,%s,%s,%s,%s,%s,%s)"
             data = (read_at.strftime('%Y-%m-%d %H:%M:%S'), post_at.strftime('%Y-%m-%d %H:%M:%S'),title,employer,province,city,url,False)
             cursor.execute(sql, data)
             connection.commit()
