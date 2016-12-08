@@ -42,6 +42,8 @@ print len(contents)
 for content in contents:
     text = content["content"]
     skills = extractSkills(text,skillMap, skillReg)
+    if content["draft_id"] == 200:
+        print skillMap
     set_content_analyzed(content["draft_id"])
     if(len(skills) > 1):
         add_job(content["draft_id"])
