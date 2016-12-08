@@ -11,8 +11,8 @@ job_daily.enable()
 
 job_hourly = cron.new(command='cd ~/canadajob;source env/bin/activate;./hourly_task.py',comment='job_hourly')
 
-job_hourly.hour.every(1)
-
+job_hourly.minute.on(0)
+job_hourly.hour.during(0,23)
 job_hourly.enable()
 
 cron.write()
