@@ -8,13 +8,9 @@ from orm import *
 def extractSkills(text, skillMap, skillReg, log):
     skills = []
     for (k,v) in skillMap.items():
-        # if any(keyword in text for keyword in v):
-        #     skills.append(k)
         for keyword in v:
             if keyword in text:
-                print k
                 skills.append(k)
-                break
     for (k,v) in skillReg.items():
         pattern = re.compile(v)
         match = pattern.search(text)
@@ -50,7 +46,7 @@ for content in contents:
     if content["draft_id"] == 200:
         log = True
     skills = extractSkills(text,skillMap, skillReg,log)
-
+    print skills
     # set_content_analyzed(content["draft_id"])
     # if(len(skills) > 1):
     #     add_job(content["draft_id"])
