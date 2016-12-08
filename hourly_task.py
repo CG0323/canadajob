@@ -107,6 +107,6 @@ for draft in drafts:
     print "handle draft No: " + str(count) + "/" + str(total)
     count = count + 1
     retrieve_content(driver,draft)
-    if count > 20:
+    if count > 10:
         break
 driver.quit()
