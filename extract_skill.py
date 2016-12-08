@@ -41,7 +41,7 @@ print len(contents)
 
 
 for content in contents:
-    text = content["content"]
+    text = content["content"].lower()
     log = False
     if content["draft_id"] == 200:
         log = True
