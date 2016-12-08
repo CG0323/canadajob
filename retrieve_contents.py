@@ -82,7 +82,7 @@ def retrieve_content(driver,draft):
         elif rurl.find("neuvoo.ca") != -1:
             print "neuvoo found!"
             time.sleep(5000)
-            print driver.current_url
+            print driver.page_source
             element = WebDriverWait(driver, 25).until(lambda x : x.find_element_by_id("job-container"))
             text = cleanNeuvoo(driver.page_source)
         else:
