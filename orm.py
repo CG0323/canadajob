@@ -20,11 +20,14 @@ def create_draft_table():
             sql = """CREATE TABLE IF NOT EXISTS draft ( 
                     id INT UNSIGNED NOT NULL auto_increment, 
                     post_at DATETIME,
+                    read_at DATETIME,
                     title VARCHAR(50) NOT NULL,
                     employer VARCHAR(50) NOT NULL,
                     province VARCHAR(40),  
                     city VARCHAR(40), 
                     url VARCHAR(700),
+                    refined BOOLEAN,
+                    rurl VARCHAR(700),
                     PRIMARY KEY (title, employer), 
                     KEY (id),
                     UNIQUE (url) )"""
@@ -57,7 +60,7 @@ def create_content_table():
     finally:
         connection.close();
 
-def add_draft(post_at, title, employer, province, city, url):
+def add_draft(read_at, post_at, title, employer, province, city, url):
     try:
         # Connect to the database
         print title + " from " + employer
@@ -68,8 +71,8 @@ def add_draft(post_at, title, employer, province, city, url):
                                     charset='utf8mb4',
                                     cursorclass=pymysql.cursors.DictCursor)
         with connection.cursor() as cursor:
-            sql = "INSERT IGNORE INTO draft (post_at,title,employer,province,city,url,refined) VALUES(%s,%s,%s,%s,%s,%s)"
-            data = (post_at.strftime('%Y-%m-%d %H:%M:%S'),title,employer,province,city,url,False)
+            sql = "INSERT IGNORE INTO draft (read_at,post_at,title,employer,province,city,url,refined) VALUES(%s,%s,%s,%s,%s,%s)"
+            data = (read_at.strftime('%Y-%m-%d %H:%M:%S'), post_at.strftime('%Y-%m-%d %H:%M:%S'),title,employer,province,city,url,False)
             cursor.execute(sql, data)
             connection.commit()
     except pymysql.DataError as error:
@@ -80,25 +83,6 @@ def add_draft(post_at, title, employer, province, city, url):
         connection.rollback()
     finally:
         connection.close();
-
-def get_test():
-    try:
-        connection = pymysql.connect(host='localhost',
-                                    user='cg',
-                                    password='088583-Salahdin',
-                                    db='canadajob',
-                                    charset='utf8mb4',
-                                    cursorclass=pymysql.cursors.DictCursor)
-        with connection.cursor() as cursor:
-            sql = "SELECT * FROM draft WHERE province = %s AND refined=%s"   
-            
-            cursor.execute(sql,("Quebec",False,))
-            
-            results = cursor.fetchall()
-            for row in results:
-                print row
-    except:
-        print ("Error: unable to fecth data")
 
 def get_drafts():  
     try:
@@ -118,6 +102,26 @@ def get_drafts():
             return results
     finally:
         connection.close();
+
+def get_recent_drafts():  
+    try:
+        drafts = []
+        connection = pymysql.connect(host='localhost',
+                                    user='cg',
+                                    password='088583-Salahdin',
+                                    db='canadajob',
+                                    charset='utf8mb4',
+                                    cursorclass=pymysql.cursors.DictCursor)
+        with connection.cursor() as cursor:
+            sql = "SELECT * FROM draft WHERE refined=%s AND read_at >=  NOW() - interval %s day"   
+            
+            cursor.execute(sql,(False,2))
+            
+            results = cursor.fetchall()
+            return results
+    finally:
+        connection.close();
+
 
 
 def get_drafts_by_province(province):  
@@ -172,11 +176,5 @@ def save_content(draft_id, content):
             data = (draft_id, content)
             cursor.execute(sql, data)
             connection.commit()
-    # except pymysql.DataError as error:
-    #     code, message = error.args
-    #     print ">>>>>>>>>>>>>", code, message
-    #     connection.rollback()
-    # except:
-    #     connection.rollback()
     finally:
         connection.close();

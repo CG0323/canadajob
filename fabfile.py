@@ -5,7 +5,7 @@ from fabric.contrib.console import confirm
 import time
 
 # env.use_ssh_config = True
-env.hosts = ['52.8.218.46']
+env.hosts = ['52.52.193.215']
 env.user = 'ec2-user'
 env.key_filename = '/users/wangchun/Downloads/development/cg007.pem'
 

@@ -67,5 +67,6 @@
     "RedShift":["redshift"],
     "MFC":["mfc"],
     "SharePoint":["sharepoint", "share point"],
-    "Prism":["prism"]
+    "Prism":["prism"],
+    "Bilingual": ["biling"]
 }

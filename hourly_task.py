@@ -82,7 +82,7 @@ def retrieve_content(driver,draft):
         elif rurl.find("neuvoo.ca") != -1:
             print "neuvoo found!"
             time.sleep(5)
-            element = WebDriverWait(driver, 10).until(lambda x : x.find_element_by_id("job-container"))
+            element = WebDriverWait(driver, 5).until(lambda x : x.find_element_by_id("job-container"))
             text = cleanNeuvoo(driver.page_source)
         else:
             unknown = True
@@ -96,12 +96,9 @@ def retrieve_content(driver,draft):
     except TimeoutException:
         set_draft_refined(draft["id"], "")
         print "time out occured"
-    # finally:
-    #     if driver is not None:
-    #         driver.quit()
 
-drafts = get_drafts()
 
+drafts = get_recent_drafts()
 create_content_table()
 driver = webdriver.PhantomJS()
 count = 1
@@ -110,5 +107,6 @@ for draft in drafts:
     print "handle draft No: " + str(count) + "/" + str(total)
     count = count + 1
     retrieve_content(driver,draft)
-    if count > 10:
+    if count > 20:
         break
+driver.quit()
