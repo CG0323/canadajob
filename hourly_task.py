@@ -97,7 +97,6 @@ def retrieve_content(driver,draft):
     except TimeoutException:
         set_draft_refined(draft["id"], "")
         print "time out occured"
-        print driver.page_source
 
 
 drafts = get_recent_drafts()
@@ -109,6 +108,6 @@ for draft in drafts:
     print "handle draft No: " + str(count) + "/" + str(total)
     count = count + 1
     retrieve_content(driver,draft)
-    if count > 10:
+    if count > 200:
         break
 driver.quit()
