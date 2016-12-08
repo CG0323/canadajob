@@ -21,6 +21,7 @@ def create_draft_table():
                     id INT UNSIGNED NOT NULL auto_increment, 
                     post_at DATETIME,
                     read_at DATETIME,
+                    month VARCHAR(10),
                     title VARCHAR(50) NOT NULL,
                     employer VARCHAR(50) NOT NULL,
                     province VARCHAR(40),  
@@ -28,7 +29,7 @@ def create_draft_table():
                     url VARCHAR(700),
                     refined BOOLEAN,
                     rurl VARCHAR(700),
-                    PRIMARY KEY (title, employer), 
+                    PRIMARY KEY (title, employer, month), 
                     KEY (id),
                     UNIQUE (url) )"""
             cursor.execute(sql)
@@ -60,7 +61,7 @@ def create_content_table():
     finally:
         connection.close();
 
-def add_draft(read_at, post_at, title, employer, province, city, url):
+def add_draft(read_at, post_at, month, title, employer, province, city, url):
     try:
         # Connect to the database
         print title + " from " + employer
@@ -71,7 +72,7 @@ def add_draft(read_at, post_at, title, employer, province, city, url):
                                     charset='utf8mb4',
                                     cursorclass=pymysql.cursors.DictCursor)
         with connection.cursor() as cursor:
-            sql = "INSERT IGNORE INTO draft (read_at,post_at,title,employer,province,city,url,refined) VALUES(%s,%s,%s,%s,%s,%s,%s,%s)"
+            sql = "INSERT IGNORE INTO draft (read_at,post_at,month,title,employer,province,city,url,refined) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s)"
             data = (read_at.strftime('%Y-%m-%d %H:%M:%S'), post_at.strftime('%Y-%m-%d %H:%M:%S'),title,employer,province,city,url,False)
             cursor.execute(sql, data)
             connection.commit()

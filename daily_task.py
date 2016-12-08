@@ -44,9 +44,9 @@ def readPage(text):
         elif "h" in dateString:
             h = int(dateString.replace("h",""))
             job["date"] = d1 - datetime.timedelta(hours=h)
+        job["month"] = job["date"].date.month
         
-        
-        add_draft(job["read_at"], job["date"], job["title"], job["employer"], job["address"]["province"], job["address"]["city"], job["link"])
+        add_draft(job["read_at"], job["date"], job["month"], job["title"], job["employer"], job["address"]["province"], job["address"]["city"], job["link"])
     
 create_draft_table()
 

@@ -68,5 +68,10 @@
     "MFC":["mfc"],
     "SharePoint":["sharepoint", "share point"],
     "Prism":["prism"],
-    "Bilingual": ["biling"]
+    "Bilingual": ["biling"],
+    "J2EE": ["j2ee"],
+    "Embedded": ["embedded"],
+    "RTOS": ["rtos"],
+    "Full Stack": ["full stack"],
+    "Scala": ["scala"]
 }
