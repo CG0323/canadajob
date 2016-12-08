@@ -37,6 +37,7 @@ def readPage(text):
         dateString = dateString.replace(" - ","")
         dateString = dateString.replace(" ago ","")
         d1 = datetime.datetime.now()
+        job["read_at"] = d1;
         if "d" in dateString:
             d = int(dateString.replace("d",""))
             job["date"] = d1 - datetime.timedelta(days=d)
@@ -44,7 +45,8 @@ def readPage(text):
             h = int(dateString.replace("h",""))
             job["date"] = d1 - datetime.timedelta(hours=h)
         
-        add_draft(d1, job["date"], job["title"], job["employer"], job["address"]["province"], job["address"]["city"], job["link"])
+        
+        add_draft(job["read_at"], job["date"], job["title"], job["employer"], job["address"]["province"], job["address"]["city"], job["link"])
     
 create_draft_table()
 
