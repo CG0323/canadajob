@@ -53,6 +53,7 @@ def create_content_table():
             sql = """CREATE TABLE IF NOT EXISTS content ( 
                     draft_id INT NOT NULL,
                     content TEXT,
+                    analyzed BOOLEAN,
                     PRIMARY KEY (draft_id))"""
             cursor.execute(sql)
             cursor.execute('SET sql_notes = 1') 
@@ -157,6 +158,26 @@ def set_draft_refined(draft_id,rurl):
     finally:
         connection.close();
 
+def set_content_analyzed(draft_id):  
+    try:
+        # Connect to the database
+        connection = pymysql.connect(host='localhost',
+                                    user='cg',
+                                    password='088583-Salahdin',
+                                    db='canadajob',
+                                    charset='utf8mb4',
+                                    cursorclass=pymysql.cursors.DictCursor)
+        with connection.cursor() as cursor:
+            sql = "UPDATE content SET analyzed = 1 WHERE draft_id = %s"
+            cursor.execute(sql, (draft_id,))
+            connection.commit()
+    except:
+        print "falied to update content"
+        connection.rollback()
+    finally:
+        connection.close();
+
+
 def save_content(draft_id, content):
     try:
         # Connect to the database
@@ -173,6 +194,26 @@ def save_content(draft_id, content):
             connection.commit()
     finally:
         connection.close();
+
+def get_contents():  
+    try:
+        contents = []
+        connection = pymysql.connect(host='localhost',
+                                    user='cg',
+                                    password='088583-Salahdin',
+                                    db='canadajob',
+                                    charset='utf8mb4',
+                                    cursorclass=pymysql.cursors.DictCursor)
+        with connection.cursor() as cursor:
+            sql = "SELECT * FROM content WHERE analyzed=%s"   
+            
+            cursor.execute(sql,(False,))
+            
+            results = cursor.fetchall()
+            return results
+    finally:
+        connection.close();
+
     
 def create_skill_table():
     try:
@@ -213,3 +254,82 @@ def add_skill(name, keywords, is_reg):
             connection.commit()
     finally:
         connection.close();
+
+def create_job_table():
+    try:
+        # Connect to the database
+        connection = pymysql.connect(host='localhost',
+                                    user='cg',
+                                    password='088583-Salahdin',
+                                    db='canadajob',
+                                    charset='utf8mb4',
+                                    cursorclass=pymysql.cursors.DictCursor)
+        with connection.cursor() as cursor:
+            cursor.execute('SET sql_notes = 0') 
+            sql = """CREATE TABLE IF NOT EXISTS job ( 
+                    draft_id INT NOT NULL,
+                    KEY (draft_id))"""
+            cursor.execute(sql)
+            cursor.execute('SET sql_notes = 1') 
+            connection.commit()
+    
+    finally:
+        connection.close();
+
+def add_job(draft_id):
+    try:
+        # Connect to the database
+        connection = pymysql.connect(host='localhost',
+                                    user='cg',
+                                    password='088583-Salahdin',
+                                    db='canadajob',
+                                    charset='utf8mb4',
+                                    cursorclass=pymysql.cursors.DictCursor)
+        with connection.cursor() as cursor:
+            sql = "INSERT IGNORE INTO job (draft_id) VALUES(%s)"
+            data = (draft_id)
+            cursor.execute(sql, data)
+            connection.commit()
+    finally:
+        connection.close();
+
+def create_job_skill_table():
+    try:
+        # Connect to the database
+        connection = pymysql.connect(host='localhost',
+                                    user='cg',
+                                    password='088583-Salahdin',
+                                    db='canadajob',
+                                    charset='utf8mb4',
+                                    cursorclass=pymysql.cursors.DictCursor)
+        with connection.cursor() as cursor:
+            cursor.execute('SET sql_notes = 0') 
+            sql = """CREATE TABLE IF NOT EXISTS job_skill ( 
+                    draft_id INT NOT NULL,
+                    skill VARCHAR(20) NOT NULL,
+                    PRIMARY KEY (draft_id,skill))"""
+            cursor.execute(sql)
+            cursor.execute('SET sql_notes = 1') 
+            connection.commit()
+    
+    finally:
+        connection.close();
+
+def add_job_skills(draft_id, skills):
+    try:
+        # Connect to the database
+        connection = pymysql.connect(host='localhost',
+                                    user='cg',
+                                    password='088583-Salahdin',
+                                    db='canadajob',
+                                    charset='utf8mb4',
+                                    cursorclass=pymysql.cursors.DictCursor)
+        with connection.cursor() as cursor:
+            sql = "INSERT IGNORE INTO job_skill (draft_id,skill) VALUES(%s,%s)"
+            for skill in skills:
+                data = (draft_id, skill)
+                cursor.execute(sql, data)
+            connection.commit()
+    finally:
+        connection.close();
+

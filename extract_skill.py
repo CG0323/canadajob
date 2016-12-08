@@ -17,7 +17,7 @@ def extractSkills(text, skillMap, skillReg):
             skills.append(k)
     return skills
 
-create_skill_table();
+create_skill_table()
 
 
 with open('skills.json') as infile:
@@ -32,6 +32,21 @@ with open('skill-reg.json') as infile:
         name = k
         keywords = v
         add_skill(name,keywords,True)
+
+create_job_table()
+create_job_skill_table()
+contents = get_contents()
+
+
+
+for content in contents:
+    text = content["content"]
+    skills = extractSkills(text,skillMap, skillReg)
+    set_content_analyzed(content["draft_id"])
+    if(len(skills) > 1):
+        add_job(content["draft_id"])
+        add_job_skills(content["draft_id"], skills)
+
 # for i in range(0,16):
 #     fileName = str(i)+".txt";
 #     with codecs.open(fileName, encoding='utf-8') as f:

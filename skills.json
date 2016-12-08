@@ -74,5 +74,10 @@
     "RTOS": ["rtos"],
     "Full Stack": ["full stack"],
     "Scala": ["scala"],
-    "WebPack": ["webpack"]
+    "WebPack": ["webpack"],
+    "Ubuntu": ["ubuntu"],
+    "CentOS": ["centos"],
+    "RedHat": ["redhat","red hat","rhel"],
+    "PostgreSQL":["postgresql"],
+    "SVN":["svn"]
 }
