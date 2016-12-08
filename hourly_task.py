@@ -96,6 +96,7 @@ def retrieve_content(driver,draft):
     except TimeoutException:
         set_draft_refined(draft["id"], "")
         print "time out occured"
+        print driver.page_source
 
 
 drafts = get_recent_drafts()
