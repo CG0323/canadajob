@@ -5,13 +5,13 @@ cron  = CronTab(user=True)
 
 job_daily = cron.new(command='sudo su; /sbin/reboot',comment='job_reboot')
 
-job_daily.minute.on(02)
+job_daily.minute.on(2)
 job_daily.hour.on(7)
 job_daily.enable()
 
 job_reboot  = cron.new(command='cd ~/canadajob;source env/bin/activate;./daily_task.py',comment='job_menu')
 
-job_reboot.minute.on(08)
+job_reboot.minute.on(8)
 job_reboot.hour.on(7)
 job_reboot.enable()
 
