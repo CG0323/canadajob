@@ -57,6 +57,12 @@ urls = ["http://neuvoo.ca/jobs/?k=software+developer&l=quebec&f=24h&p=1&r=15&duc
 
 for url in urls:
     driver.get(url)
+    js="var q=document.documentElement.scrollTop=10000"
+    driver.execute_script(js)
+    time.sleep(2)
+    js_="var q=document.documentElement.scrollTop=0"
+    driver.execute_script(js_)
+    time.sleep(5)
     text = driver.page_source
     readPage(text)
     page_count = 0;
