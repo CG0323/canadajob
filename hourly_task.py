@@ -65,7 +65,7 @@ def retrieve_content(driver,draft):
         rurl = driver.current_url
         unknown = False
         text = None
-        time.sleep(4)
+        time.sleep(2)
         js="var q=document.documentElement.scrollTop=10000"
         driver.execute_script(js)
         time.sleep(2)
@@ -91,7 +91,7 @@ def retrieve_content(driver,draft):
         elif rurl.find("neuvoo.ca") != -1:
             print rurl
             print "neuvoo found!"
-            time.sleep(5)
+            time.sleep(10)
             element = WebDriverWait(driver, 5).until(lambda x : x.find_element_by_id("job-container"))
             text = cleanNeuvoo(driver.page_source)
         else:
