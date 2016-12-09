@@ -65,6 +65,15 @@ def retrieve_content(driver,draft):
         rurl = driver.current_url
         unknown = False
         text = None
+        time.sleep(4)
+        js="var q=document.documentElement.scrollTop=10000"
+        driver.execute_script(js)
+        time.sleep(2)
+
+        js_="var q=document.documentElement.scrollTop=0"
+        driver.execute_script(js_)
+        time.sleep(5)
+
         if rurl.find("monster.ca") != -1:
             print "monster found!"
             element = WebDriverWait(driver, 5).until(lambda x : x.find_element_by_id("TrackingJobBody"))
