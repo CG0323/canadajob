@@ -17,7 +17,7 @@ job_menu.enable()
 
 job_content = cron.new(command='cd ~/canadajob;source env/bin/activate;./hourly_task.py',comment='job_content')
 
-job_content.minute.on(08)
+job_content.minute.on(8)
 job_content.hour.on(8)
 job_content.enable()
 
