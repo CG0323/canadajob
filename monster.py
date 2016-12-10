@@ -61,17 +61,14 @@ for url in urls:
     time.sleep(10)
     text = driver.page_source
     readPage(text)
-    page_count = 0;
-    while (page_count < 4):
-        js="var q=document.documentElement.scrollTop=100000"  
-        driver.execute_script(js)  
-        time.sleep(3)
-        print driver.page_source.encode("utf-8")
-        driver.find_element_by_xpath("//a[@class='page-link next']").click()
+    for page in range (2,3):
+
+        purl = url + "/" + str(page)
+        driver.get(purl)
+        time.sleep(10)
         try:
             page_count += 1
             print "read page NO: " + str(page_count)
-            time.sleep(10)
             readPage(driver.page_source)
         except:
             print "some error occured, skip"
