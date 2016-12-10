@@ -23,7 +23,7 @@ def get_proxies():
             row = rows[i]
             columns = row.findAll('td')
             proxies.append(columns[1].text + ":" + columns[2].text)
-    finally:
+    # finally:
         driver.quit()
         print "found " + str(len(proxies)) + "candiate proxy ips"
         return proxies
