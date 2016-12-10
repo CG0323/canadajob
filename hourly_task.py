@@ -7,6 +7,8 @@ from time import mktime
 from orm import *
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import TimeoutException
+from proxy import *
+from selenium.webdriver.common.proxy import *
 
 
 def cleanNeuvoo(html):
@@ -111,13 +113,20 @@ def retrieve_content(driver,draft):
 
 drafts = get_recent_drafts()
 create_content_table()
-driver = webdriver.PhantomJS()
+# driver = webdriver.PhantomJS()
 count = 1
-total = len(drafts)
-for draft in drafts:
+proxies = get_valid_proxies()
+total = min(len(drafts), len(proxies))
+
+for i in range(0,total - 1):
     print "handle draft No: " + str(count) + "/" + str(total)
+    print "use ip: " + proxies[i]
     count = count + 1
-    retrieve_content(driver,draft)
-    if count > 200:
-        break
-driver.quit()
+    driver = webdriver.PhantomJS()
+    myProxy = proxies[i]
+    proxy = Proxy({ 'proxyType': ProxyType.MANUAL, 'httpProxy': myProxy, 'ftpProxy': myProxy, 'sslProxy': myProxy, 'noProxy':''})
+    proxy.add_to_capabilities(webdriver.DesiredCapabilities.PHANTOMJS)
+    driver.start_session(webdriver.DesiredCapabilities.PHANTOMJS)
+    retrieve_content(driver,drafts[i])
+    driver.quit()
+    time.sleep(30)
