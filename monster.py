@@ -66,6 +66,7 @@ for url in urls:
         js="var q=document.documentElement.scrollTop=100000"  
         driver.execute_script(js)  
         time.sleep(3)
+        print driver.page_source.encode("utf-8")
         driver.find_element_by_xpath("//a[@class='page-link next']").click()
         try:
             page_count += 1
