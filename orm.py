@@ -65,7 +65,7 @@ def create_content_table():
 def add_draft(read_at, post_at, month, title, employer, province, city, url):
     try:
         # Connect to the database
-        print title + " from " + employer
+        print "add draft to db ============" + title + " from " + employer
         connection = pymysql.connect(host='localhost',
                                     user='cg',
                                     password='088583-Salahdin',
