@@ -29,7 +29,7 @@ job_reboot.enable()
 
 job_reboot = cron.new(command='/sbin/reboot',comment='job_reboot5')
 
-job_reboot.minute.on(09)
+job_reboot.minute.on(9)
 job_reboot.hour.on(15)
 job_reboot.enable()
 
