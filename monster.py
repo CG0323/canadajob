@@ -40,6 +40,8 @@ def readPage(text):
             address["city"] = adressStr.split(",")[0]
             address["province"] = adressStr.split(",")[1]
             job["address"] = address
+            print jobElement.find("time")
+
             dtstring = jobElement.find("time")["datetime"]
             dtstring = dtstring.split("T")[0]
             date = datetime.datetime.strptime(dtstring, "%Y-%m-%d")
