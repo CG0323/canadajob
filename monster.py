@@ -44,7 +44,7 @@ def readPage(text):
 
             dtstring = jobElement.find("time")["datetime"]
             d = dtstring.split(" ")[0]
-            job["date"] = datetime.datetime.now() - datetime.timedelta(days=d)   
+            job["date"] = datetime.datetime.now() - datetime.timedelta(days=int(d))   
             job["month"] = job["date"].date().month
             job["read_at"] = datetime.datetime.now()
             add_draft(job["read_at"], job["date"], job["month"], job["title"], job["employer"], job["address"]["province"], job["address"]["city"], job["link"])
