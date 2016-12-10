@@ -33,6 +33,8 @@ def readPage(text):
                 companyText = employerElement.find("span", itemprop="name").getText()
                 job["employer"] = companyText.replace("Found on: ","")
             address = {}
+            locationElement = employerElement.find("div", class_="location")
+            print locationElement
             cityElement = jobElement.select('span[itemprop="addressLocality"]')[0]
             address["city"] = cityElement.getText()
             address["province"] = jobElement.select('span[itemprop="addressRegion"]')[0].getText()
