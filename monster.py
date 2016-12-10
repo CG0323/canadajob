@@ -18,6 +18,7 @@ def readPage(text):
     jobElements = soup.find_all("article", class_="js_result_row")
     for jobElement in jobElements:
         # try:
+            print jobElement
             job = {}
             titleElement = jobElement.find("div", class_="jobTitle")
             link = titleElement.find("a")["href"]
