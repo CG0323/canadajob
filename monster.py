@@ -43,11 +43,9 @@ def readPage(text):
             print jobElement.find("time")
 
             dtstring = jobElement.find("time")["datetime"]
-            dtstring = dtstring.split("T")[0]
-            date = datetime.datetime.strptime(dtstring, "%Y-%m-%d")
-            job["date"] = date
-            job["month"] = date.date().month
-            d1 = datetime.datetime.now()
+            d = dtstring.split(" ")[0]
+            job["date"] = datetime.datetime.now() - datetime.timedelta(days=d)   
+            job["month"] = job["date"].date().month
             job["read_at"] = datetime.datetime.now()
             add_draft(job["read_at"], job["date"], job["month"], job["title"], job["employer"], job["address"]["province"], job["address"]["city"], job["link"])
         # except:
