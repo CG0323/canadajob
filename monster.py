@@ -66,12 +66,11 @@ for url in urls:
         purl = url + "/" + str(page)
         driver.get(purl)
         time.sleep(10)
-        try:
-            page_count += 1
-            print "read page NO: " + str(page_count)
-            readPage(driver.page_source)
-        except:
-            print "some error occured, skip"
-            continue
+        # try:
+        print "read page NO: " + str(page)
+        readPage(driver.page_source)
+        # except:
+        #     print "some error occured, skip"
+        #     continue
 driver.service.process.send_signal(signal.SIGTERM)
 driver.quit()
