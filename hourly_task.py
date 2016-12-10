@@ -140,7 +140,7 @@ driver = webdriver.PhantomJS()
 drafts = get_recent_drafts()
 create_content_table()
 count = 1
-total = len(drafts)
+total = min(len(drafts),20)
 
 for i in range(0,total - 1):
     print "handle draft No: " + str(count) + "/" + str(total)
