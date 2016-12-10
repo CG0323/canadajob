@@ -11,6 +11,7 @@ from proxy import *
 from selenium.webdriver.common.proxy import *
 import signal
 import socket
+import random
 
 
 
@@ -62,11 +63,13 @@ def retrieve_content(driver,draft):
          #service_args=['--ignore-ssl-errors=true'])
         driver.set_page_load_timeout(30)
         driver.get(url)
-        start = datetime.now()
-        while(url == driver.current_url or "job.php?" in driver.current_url):
-            time.sleep(1)
-            if(datetime.now() - start).seconds > 20:
-                break
+        # start = datetime.now()
+        # while(url == driver.current_url or "job.php?" in driver.current_url):
+        #     time.sleep(1)
+        #     if(datetime.now() - start).seconds > 20:
+        #         break
+        rt = random.randint(15, 50)
+        time.sleep(rt)
         rurl = driver.current_url
         unknown = False
         text = None
@@ -96,7 +99,6 @@ def retrieve_content(driver,draft):
         elif rurl.find("neuvoo.ca") != -1:
             print rurl
             print "neuvoo found!"
-            time.sleep(10)
             element = WebDriverWait(driver, 5).until(lambda x : x.find_element_by_id("job-container"))
             text = cleanNeuvoo(driver.page_source)
         else:

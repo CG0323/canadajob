@@ -40,7 +40,6 @@ def readPage(text):
             address["city"] = adressStr.split(",")[0]
             address["province"] = adressStr.split(",")[1]
             job["address"] = address
-            print jobElement.find("time")
 
             dtstring = jobElement.find("time")["datetime"]
             d = dtstring.split(" ")[0]
@@ -58,21 +57,19 @@ driver = webdriver.PhantomJS()
 urls = ["http://www.monster.ca/jobs/search/?q=.net-developer&where=canada&sort=dt.rv.di"]
 
 for url in urls:
-    driver.get(url)
-    time.sleep(10)
     # element = WebDriverWait(driver, 25).until(lambda x : x.find_element_by_css_selector('span[itemprop="addressLocality"]'))
-    readPage(driver.page_source)
-    for page in range (2,4):
-
-        purl = url + "/" + str(page)
+    for page in range (1,4):
+        purl = url 
+        if page > 1:
+            purl = url + "/" + str(page)
         driver.get(purl)
         time.sleep(10)
         # element = WebDriverWait(driver, 20).until(lambda x : x.find_element_by_css_selector('span[itemprop="addressLocality"]'))
-        # try:
-        print "read page NO: " + str(page)
-        readPage(driver.page_source)
-        # except:
-        #     print "some error occured, skip"
-        #     continue
+        try:
+            print "read page NO: " + str(page)
+            readPage(driver.page_source)
+        except:
+            print "some error occured when read menu page, skip"
+            continue
 driver.service.process.send_signal(signal.SIGTERM)
 driver.quit()
