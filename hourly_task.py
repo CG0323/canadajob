@@ -130,6 +130,7 @@ def retrieve_content(driver,draft):
         print "time out occured"
 
 
+time.sleep(120) # wait 2 minutes after reboot
 driver = webdriver.PhantomJS()
 # myProxy = "192.99.128.170:3128"
 # proxy = Proxy({ 'proxyType': ProxyType.MANUAL, 'httpProxy': myProxy, 'ftpProxy': myProxy, 'sslProxy': myProxy, 'noProxy':''})
