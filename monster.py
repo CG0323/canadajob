@@ -34,8 +34,6 @@ def readPage(text):
                 job["employer"] = companyText.replace("Found on: ","")
             address = {}
             cityElement = jobElement.find("span", itemprop="addressLocality")
-            if cityElement is None:
-                continue
             address["city"] = jobElement.find("span", itemprop="addressLocality").getText()
             address["province"] = jobElement.find("span", itemprop="addressRegion").getText()
             job["address"] = address
@@ -61,7 +59,7 @@ for url in urls:
     time.sleep(10)
     text = driver.page_source
     readPage(text)
-    for page in range (2,3):
+    for page in range (2,4):
 
         purl = url + "/" + str(page)
         driver.get(purl)
