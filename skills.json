@@ -12,7 +12,7 @@
     "LINQ": ["linq"],
     "Python": ["python"],
     "Javascript": ["javascript"],
-    "Angularjs": ["angular", "angularjs", "angular js"],
+    "Angularjs": ["angular"],
     "Angular2": ["anglar2","anglar 2"],
     "C++": ["c++"],
     "WPF": ["wpf", "windows presentation foundation"],
@@ -79,5 +79,7 @@
     "CentOS": ["centos"],
     "RedHat": ["redhat","red hat","rhel"],
     "PostgreSQL":["postgresql"],
-    "SVN":["svn"]
+    "SVN":["svn"],
+    "Machine Learning": ["machine learning"],
+    "Pandas": ["pandas"]
 }

@@ -317,6 +317,7 @@ def create_job_skill_table():
 
 def add_job_skills(draft_id, skills):
     try:
+        print "add skill for draft_id = " + str(draft_id) + " : " + ",".join(skills)
         # Connect to the database
         connection = pymysql.connect(host='localhost',
                                     user='cg',
