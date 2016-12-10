@@ -112,7 +112,7 @@ def retrieve_content(driver,draft):
         set_draft_refined(draft["id"], rurl)
     except TimeoutException:
         set_draft_refined(draft["id"], "")
-        print driver.page_source
+        
         print "time out occured"
 
 
