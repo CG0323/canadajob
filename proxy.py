@@ -10,7 +10,7 @@ import socket
 driver = webdriver.PhantomJS()
 
 def get_proxies():
-    try:
+    # try:
         proxies = []
         url = "http://gatherproxy.com/proxylist/country/?c=Canada"
         driver.get(url)
