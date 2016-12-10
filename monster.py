@@ -6,6 +6,7 @@ import datetime,time
 from time import mktime
 from orm import *
 import signal
+from selenium.webdriver.support.ui import WebDriverWait
 
 # class MyEncoder(json.JSONEncoder):
 #     def default(self, obj):
@@ -58,9 +59,8 @@ urls = ["http://www.monster.ca/jobs/search/?q=.net-developer&where=canada&sort=d
 
 for url in urls:
     driver.get(url)
-    time.sleep(10)
-    text = driver.page_source
-    readPage(text)
+    element = WebDriverWait(driver, 20).until(lambda x : x.find_element_by_css_selector('span[itemprop="addressLocality"]'))
+    readPage(driver.page_source)
     for page in range (2,4):
 
         purl = url + "/" + str(page)
