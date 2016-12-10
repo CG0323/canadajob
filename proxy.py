@@ -25,6 +25,7 @@ def get_proxies():
             proxies.append(columns[1].text + ":" + columns[2].text)
     finally:
         driver.quit()
+        print "found " + len(proxies) + "candiate proxy ips"
         return proxies
 
 
@@ -39,7 +40,9 @@ def get_valid_proxies():
             proxy_temp = {"http":proxy_host}
             res = urllib.urlopen(url,proxies=proxy_temp).read()
             proxies.append(candidate_proxies[i])
+            print "++++++found valid proxy ip: " + candidate_proxies[i]
         except Exception,e:
+            print "------invalid proxy ip:" + candidate_proxies[i]
             continue
 
 
