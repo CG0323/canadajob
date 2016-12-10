@@ -63,6 +63,9 @@ for url in urls:
     readPage(text)
     page_count = 0;
     while (page_count < 4):
+        js="var q=document.documentElement.scrollTop=100000"  
+        driver.execute_script(js)  
+        time.sleep(3)
         driver.find_element_by_xpath("//a[@class='page-link next']").click()
         try:
             page_count += 1
