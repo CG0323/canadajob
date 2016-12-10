@@ -27,6 +27,16 @@ def cleanNeuvoo(html):
 
 def cleanMonster(html):
     soup = BeautifulSoup(html,"lxml") # create a new bs4 object from the html data loaded
+    main = soup.find("div", class_="jobview-section")
+    if main is None:
+        return None
+    for script in main(["script", "style"]): # remove all javascript and stylesheet code
+        script.extract()
+    text ="\n".join(main.strings)
+    return text
+
+def cleanMonster(html):
+    soup = BeautifulSoup(html,"lxml") # create a new bs4 object from the html data loaded
     main = soup.find("span", id="TrackingJobBody")
     if main is None:
         return None
@@ -82,7 +92,11 @@ def retrieve_content(driver,draft):
         driver.execute_script(js_)
         time.sleep(5)
 
-        if rurl.find("monster.ca") != -1:
+        if rurl.find("job-openings.monster") != -1:
+            print "monster opening found!"
+            element = WebDriverWait(driver, 5).until(lambda x : x.find_element_by_css_selector(".jobview-section"))
+            text = cleanMonsterOpening(driver.page_source)
+        elif rurl.find("monster.ca") != -1:
             print "monster found!"
             element = WebDriverWait(driver, 5).until(lambda x : x.find_element_by_id("TrackingJobBody"))
             text = cleanMonster(driver.page_source)
