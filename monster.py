@@ -35,10 +35,10 @@ def readPage(text):
                 job["employer"] = companyText.replace("Found on: ","")
             address = {}
             locationElement = jobElement.find("div", class_="location")
-            print locationElement
-            cityElement = jobElement.select('span[itemprop="addressLocality"]')[0]
-            address["city"] = cityElement.getText()
-            address["province"] = jobElement.select('span[itemprop="addressRegion"]')[0].getText()
+            
+            adressStr = locationElement.find("span").getText()
+            address["city"] = adressStr.split(",")[0]
+            address["province"] = jadressStr.split(",")[1]
             job["address"] = address
             dtstring = jobElement.find("time")["datetime"]
             dtstring = dtstring.split("T")[0]
@@ -59,13 +59,15 @@ urls = ["http://www.monster.ca/jobs/search/?q=.net-developer&where=canada&sort=d
 
 for url in urls:
     driver.get(url)
-    element = WebDriverWait(driver, 25).until(lambda x : x.find_element_by_css_selector('span[itemprop="addressLocality"]'))
+    time.sleep(10)
+    # element = WebDriverWait(driver, 25).until(lambda x : x.find_element_by_css_selector('span[itemprop="addressLocality"]'))
     readPage(driver.page_source)
     for page in range (2,4):
 
         purl = url + "/" + str(page)
         driver.get(purl)
-        element = WebDriverWait(driver, 20).until(lambda x : x.find_element_by_css_selector('span[itemprop="addressLocality"]'))
+        time.sleep(10)
+        # element = WebDriverWait(driver, 20).until(lambda x : x.find_element_by_css_selector('span[itemprop="addressLocality"]'))
         # try:
         print "read page NO: " + str(page)
         readPage(driver.page_source)
