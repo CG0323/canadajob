@@ -17,7 +17,7 @@ def readPage(text):
     soup = BeautifulSoup(text,'lxml')
     jobElements = soup.find_all("article", class_="js_result_row")
     for jobElement in jobElements:
-        try:
+        # try:
             job = {}
             titleElement = jobElement.find("div", class_="jobTitle")
             link = titleElement.find("a")["href"]
@@ -46,8 +46,8 @@ def readPage(text):
             d1 = datetime.datetime.now()
             job["read_at"] = datetime.datetime.now()
             add_draft(job["read_at"], job["date"], job["month"], job["title"], job["employer"], job["address"]["province"], job["address"]["city"], job["link"])
-        except:
-            print jobElement
+        # except:
+        #     print jobElement
 
 create_draft_table()
 
