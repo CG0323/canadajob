@@ -20,9 +20,9 @@ def readPage(text):
         # try:
             print jobElement
             job = {}
-            titleElement = jobElement.find("div", class_="jobTitle")
-            link = titleElement.find("a")["href"]
-            job["title"] = titleElement.find("a")["title"]
+            # titleElement = jobElement.find("div", class_="jobTitle")
+            link = jobElement.find("a")["href"]
+            job["title"] = jobElement.find("a")["title"]
             job["link"] = link
             
             employerElement = jobElement.find("div", class_="company")
