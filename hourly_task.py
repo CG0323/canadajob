@@ -114,37 +114,24 @@ def retrieve_content(driver,draft):
         print "time out occured"
 
 
+driver = webdriver.PhantomJS()
+# myProxy = "192.99.128.170:3128"
+# proxy = Proxy({ 'proxyType': ProxyType.MANUAL, 'httpProxy': myProxy, 'ftpProxy': myProxy, 'sslProxy': myProxy, 'noProxy':''})
+# proxy.add_to_capabilities(webdriver.DesiredCapabilities.PHANTOMJS)
+# print webdriver.DesiredCapabilities.PHANTOMJS
+# driver.start_session(webdriver.DesiredCapabilities.PHANTOMJS)
+
 drafts = get_recent_drafts()
 create_content_table()
 count = 1
-proxies = get_valid_proxies()
-total = min(len(drafts), len(proxies))
-# total = len(proxies)
-socket.setdefaulttimeout(10)
+total = len(drafts)
 
 for i in range(0,total - 1):
     print "handle draft No: " + str(count) + "/" + str(total)
-    print "use ip: " + proxies[i]
     count = count + 1
-    driver = webdriver.PhantomJS()
-    myProxy = proxies[i]
-    proxy = Proxy({ 'proxyType': ProxyType.MANUAL, 'httpProxy': myProxy, 'ftpProxy': myProxy, 'sslProxy': myProxy, 'noProxy':''})
-    proxy.add_to_capabilities(webdriver.DesiredCapabilities.PHANTOMJS)
-    driver.start_session(webdriver.DesiredCapabilities.PHANTOMJS)
-    # url = 'http://52.52.134.48:5000/'
     try:
-        # driver.get(url)
         retrieve_content(driver,drafts[i])
-        # time.sleep(3)
-        # print driver.page_source
-    except socket.timeout as e:
-        print(e)
-        continue
-    except socket.error as e:
-        print(e)
-        continue
-    # retrieve_content(driver,drafts[i])
     finally:
-        driver.service.process.send_signal(signal.SIGTERM) # kill the specific phantomjs child proc
-        driver.quit()
         time.sleep(30)
+driver.service.process.send_signal(signal.SIGTERM) # kill the specific phantomjs child proc
+driver.quit()
