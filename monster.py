@@ -59,7 +59,7 @@ urls = ["http://www.monster.ca/jobs/search/?q=.net-developer&where=canada&sort=d
 
 for url in urls:
     driver.get(url)
-    element = WebDriverWait(driver, 20).until(lambda x : x.find_element_by_css_selector('span[itemprop="addressLocality"]'))
+    element = WebDriverWait(driver, 25).until(lambda x : x.find_element_by_css_selector('span[itemprop="addressLocality"]'))
     readPage(driver.page_source)
     for page in range (2,4):
 
