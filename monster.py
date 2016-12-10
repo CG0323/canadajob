@@ -57,6 +57,7 @@ urls = ["http://www.monster.ca/jobs/search/?q=.net-developer&where=canada&sort=d
 
 for url in urls:
     driver.get(url)
+    time.sleep(10)
     text = driver.page_source
     readPage(text)
     page_count = 0;
@@ -65,8 +66,8 @@ for url in urls:
         try:
             page_count += 1
             print "read page NO: " + str(page_count)
+            time.sleep(10)
             readPage(driver.page_source)
-            time.sleep(3)
         except:
             print "some error occured, skip"
             continue
