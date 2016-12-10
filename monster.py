@@ -38,7 +38,7 @@ def readPage(text):
             
             adressStr = locationElement.find("span").getText()
             address["city"] = adressStr.split(",")[0]
-            address["province"] = jadressStr.split(",")[1]
+            address["province"] = adressStr.split(",")[1]
             job["address"] = address
             dtstring = jobElement.find("time")["datetime"]
             dtstring = dtstring.split("T")[0]
