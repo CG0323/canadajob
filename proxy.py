@@ -25,7 +25,7 @@ def get_proxies():
             proxies.append(columns[1].text + ":" + columns[2].text)
     finally:
         driver.quit()
-        print "found " + len(proxies) + "candiate proxy ips"
+        print "found " + str(len(proxies)) + "candiate proxy ips"
         return proxies
 
 
