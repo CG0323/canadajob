@@ -10,6 +10,7 @@ from selenium.common.exceptions import TimeoutException
 from proxy import *
 from selenium.webdriver.common.proxy import *
 import signal
+import socket
 
 
 
@@ -119,6 +120,7 @@ count = 1
 proxies = get_valid_proxies()
 total = min(len(drafts), len(proxies))
 # total = len(proxies)
+socket.setdefaulttimeout(10)
 
 for i in range(0,total - 1):
     print "handle draft No: " + str(count) + "/" + str(total)
