@@ -44,6 +44,7 @@ def get_valid_proxies():
         except Exception,e:
             print "------invalid proxy ip:" + candidate_proxies[i]
             continue
+    return proxies
 
 
 # driver = webdriver.PhantomJS()
