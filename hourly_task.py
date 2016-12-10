@@ -25,7 +25,7 @@ def cleanNeuvoo(html):
     text ="\n".join(main.strings)
     return text
 
-def cleanMonster(html):
+def cleanMonsterOpening(html):
     soup = BeautifulSoup(html,"lxml") # create a new bs4 object from the html data loaded
     main = soup.find("div", class_="jobview-section")
     if main is None:
