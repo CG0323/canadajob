@@ -6,6 +6,7 @@ from selenium.webdriver.common.proxy import *
 import urllib2
 import urllib
 import socket
+import signal
 
 driver = webdriver.PhantomJS()
 
@@ -24,8 +25,10 @@ def get_proxies():
             columns = row.findAll('td')
             proxies.append(columns[1].text + ":" + columns[2].text)
     # finally:
+
+        driver.service.process.send_signal(signal.SIGTERM) # kill the specific phantomjs child proc
         driver.quit()
-        print "found " + str(len(proxies)) + "candiate proxy ips"
+        print "found " + str(len(proxies)) + " candiate proxy ips"
         return proxies
 
 
@@ -40,7 +43,7 @@ def get_valid_proxies():
             proxy_temp = {"http":proxy_host}
             res = urllib.urlopen(url,proxies=proxy_temp).read()
             proxies.append(candidate_proxies[i])
-            print "++++++found valid proxy ip: " + candidate_proxies[i]
+            print "++++++valid proxy ip: " + candidate_proxies[i]
         except Exception,e:
             print "------invalid proxy ip:" + candidate_proxies[i]
             continue

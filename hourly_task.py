@@ -9,6 +9,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import TimeoutException
 from proxy import *
 from selenium.webdriver.common.proxy import *
+import signal
+
 
 
 def cleanNeuvoo(html):
@@ -113,10 +115,10 @@ def retrieve_content(driver,draft):
 
 drafts = get_recent_drafts()
 create_content_table()
-# driver = webdriver.PhantomJS()
 count = 1
 proxies = get_valid_proxies()
 total = min(len(drafts), len(proxies))
+# total = len(proxies)
 
 for i in range(0,total - 1):
     print "handle draft No: " + str(count) + "/" + str(total)
@@ -127,6 +129,20 @@ for i in range(0,total - 1):
     proxy = Proxy({ 'proxyType': ProxyType.MANUAL, 'httpProxy': myProxy, 'ftpProxy': myProxy, 'sslProxy': myProxy, 'noProxy':''})
     proxy.add_to_capabilities(webdriver.DesiredCapabilities.PHANTOMJS)
     driver.start_session(webdriver.DesiredCapabilities.PHANTOMJS)
-    retrieve_content(driver,drafts[i])
-    driver.quit()
-    time.sleep(30)
+    # url = 'http://52.52.134.48:5000/'
+    try:
+        # driver.get(url)
+        retrieve_content(driver,drafts[i])
+        # time.sleep(3)
+        # print driver.page_source
+    except socket.timeout as e:
+        print(e)
+        continue
+    except socket.error as e:
+        print(e)
+        continue
+    # retrieve_content(driver,drafts[i])
+    finally:
+        driver.service.process.send_signal(signal.SIGTERM) # kill the specific phantomjs child proc
+        driver.quit()
+        time.sleep(30)
