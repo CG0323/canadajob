@@ -42,6 +42,7 @@ def readPage(text):
             job["address"] = address
 
             dtstring = jobElement.find("time")["datetime"]
+            print dtstring
             d = dtstring.split(" ")[0]
             job["date"] = datetime.datetime.now() - datetime.timedelta(days=int(d))   
             job["month"] = job["date"].date().month
