@@ -42,7 +42,6 @@ def readPage(text):
             job["address"] = address
 
             dtstring = jobElement.find("time")["datetime"]
-            print dtstring
             d = dtstring.split(" ")[0]
             if d.isdigit() == False:
                 d = "0"
