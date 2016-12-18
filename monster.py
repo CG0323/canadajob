@@ -66,8 +66,8 @@ for url in urls:
         time.sleep(10)
         # element = WebDriverWait(driver, 20).until(lambda x : x.find_element_by_css_selector('span[itemprop="addressLocality"]'))
         # try:
-            print "read page NO: " + str(page)
-            readPage(driver.page_source)
+        print "read page NO: " + str(page)
+        readPage(driver.page_source)
         # except:
         #     print "some error occured when read menu page, skip"
         #     continue
