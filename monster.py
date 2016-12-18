@@ -63,7 +63,7 @@ for url in urls:
     for page in range (1,4):
         purl = url 
         if page > 1:
-            purl = url + "/" + str(page)
+            purl = url + "&page=" + str(page)
         print purl
         driver.get(purl)
         time.sleep(10)
