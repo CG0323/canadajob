@@ -64,6 +64,7 @@ for url in urls:
         purl = url 
         if page > 1:
             purl = url + "/" + str(page)
+        print purl
         driver.get(purl)
         time.sleep(10)
         # element = WebDriverWait(driver, 20).until(lambda x : x.find_element_by_css_selector('span[itemprop="addressLocality"]'))
