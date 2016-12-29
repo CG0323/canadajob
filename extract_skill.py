@@ -43,8 +43,6 @@ print len(contents)
 for content in contents:
     text = content["content"].lower()
     log = False
-    if content["draft_id"] == 200:
-        log = True
     skills = extractSkills(text,skillMap, skillReg,log)
     set_content_analyzed(content["draft_id"])
     if(len(skills) > 1):

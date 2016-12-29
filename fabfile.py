@@ -20,13 +20,13 @@ def deploy():
 
 def push():
     local("git add --a")
-    local("git commit -m 'auto commit with fabric'")
+    local("git commit -m 'auto_commit_with_fabric'")
     local("git push")
 
 def server_pull():
     with cd('~/canadajob'):   #cd用于进入某个目录
         run('git add --a') 
-        run("git commit-m 'auto commit with fabric'")
+        run("git commit-m 'auto_commit_with_fabric'")
         run('git pull')  #远程操作用run
         run('sudo chmod -R 777 ~/canadajob')
         

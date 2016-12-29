@@ -116,9 +116,26 @@ def get_recent_drafts():
             results = cursor.fetchall()
             return results
     finally:
-        connection.close();
+        connection.close()
 
-
+def get_new_valid_drafts():  
+    try:
+        drafts = []
+        connection = pymysql.connect(host='localhost',
+                                    user='cg',
+                                    password='088583-Salahdin',
+                                    db='canadajob',
+                                    charset='utf8mb4',
+                                    cursorclass=pymysql.cursors.DictCursor)
+        with connection.cursor() as cursor:
+            sql = "select * from draft d where d.sent=false and d.id in (select draft_id from content);"   
+            
+            cursor.execute(sql)
+            
+            results = cursor.fetchall()
+            return results
+    finally:
+        connection.close()
 
 def get_drafts_by_province(province):  
     try:
