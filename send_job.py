@@ -18,7 +18,7 @@ for job in jobs:
     data = {"readAt": read_at, "postAt": job["post_at"].strftime('%Y-%m-%d %H:%M:%S'), "title": job["title"], "employer":job["employer"], "province":job["province"], "city":job["city"], "url":job["rurl"], "content": content}
     r = requests.post(url, json = data)
     print r.text
-    set_draft_sent(job.id)
+    set_draft_sent(job["id"])
     #   if r.status_code == requests.codes.ok:
     #     print "successfull sent job " + job["title"]
     #     set_draft_sent(job.id)
