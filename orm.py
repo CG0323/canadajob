@@ -175,6 +175,25 @@ def set_draft_refined(draft_id,rurl):
     finally:
         connection.close();
 
+def set_draft_sent(draft_id):  
+    try:
+        # Connect to the database
+        connection = pymysql.connect(host='localhost',
+                                    user='cg',
+                                    password='088583-Salahdin',
+                                    db='canadajob',
+                                    charset='utf8mb4',
+                                    cursorclass=pymysql.cursors.DictCursor)
+        with connection.cursor() as cursor:
+            sql = "UPDATE draft SET sent = 1 WHERE id = %s"
+            cursor.execute(sql, (draft_id,))
+            connection.commit()
+    except:
+        print "falied to update draft"
+        connection.rollback()
+    finally:
+        connection.close();
+
 def set_content_analyzed(draft_id):  
     try:
         # Connect to the database
@@ -190,6 +209,26 @@ def set_content_analyzed(draft_id):
             connection.commit()
     except:
         print "falied to update content"
+        connection.rollback()
+    finally:
+        connection.close();
+
+def get_content_by_draft_id(draft_id):  
+    try:
+        # Connect to the database
+        connection = pymysql.connect(host='localhost',
+                                    user='cg',
+                                    password='088583-Salahdin',
+                                    db='canadajob',
+                                    charset='utf8mb4',
+                                    cursorclass=pymysql.cursors.DictCursor)
+        with connection.cursor() as cursor:
+            sql = "SELECT * FROM content WHERE draft_id=%s"  
+            cursor.execute(sql, (draft_id,))
+            results = cursor.fetchall()
+            return results[0]
+    except:
+        print "falied to get content"
         connection.rollback()
     finally:
         connection.close();
