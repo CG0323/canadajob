@@ -194,6 +194,26 @@ def set_draft_sent(draft_id):
     finally:
         connection.close();
 
+def set_all_sent_false():  
+    try:
+        # Connect to the database
+        connection = pymysql.connect(host='localhost',
+                                    user='cg',
+                                    password='088583-Salahdin',
+                                    db='canadajob',
+                                    charset='utf8mb4',
+                                    cursorclass=pymysql.cursors.DictCursor)
+        with connection.cursor() as cursor:
+            sql = "UPDATE draft SET sent = 0"
+            cursor.execute(sql)
+            connection.commit()
+    except:
+        print "falied to update draft"
+        connection.rollback()
+    finally:
+        connection.close();
+
+
 def set_content_analyzed(draft_id):  
     try:
         # Connect to the database
