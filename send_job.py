@@ -11,7 +11,7 @@ jobs = get_new_valid_drafts()
 for job in jobs:
     text = get_content_by_draft_id(job["id"])["content"].lower()
     content = {"text": text}
-    read_at = datetime.datetime.now()
+    read_at = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     if job["read_at"] is not None:
       read_at = job["read_at"].strftime('%Y-%m-%d %H:%M:%S')
     data = {"readAt": read_at, "postAt": job["post_at"].strftime('%Y-%m-%d %H:%M:%S'), "title": job["title"], "employer":job["employer"], "province":job["province"], "city":job["city"], "url":job["rurl"], "content": content}
