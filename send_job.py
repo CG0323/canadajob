@@ -20,7 +20,7 @@ for job in jobs:
     title = title.replace(".NetDeveloper","")
     title = title.replace("Developer.Net","")
     title = title.replace("DeveloperDeveloper","Developer")
-    data = {"readAt": read_at, "postAt": job["post_at"].strftime('%Y-%m-%d %H:%M:%S'), "title": job["title"], "employer":job["employer"], "province":job["province"], "city":job["city"], "url":job["rurl"], "content": content}
+    data = {"readAt": read_at, "postAt": job["post_at"].strftime('%Y-%m-%d %H:%M:%S'), "title": title, "employer":job["employer"], "province":job["province"], "city":job["city"], "url":job["rurl"], "content": content}
     r = requests.post(url, json = data)
     print r.text
     set_draft_sent(job["id"])
