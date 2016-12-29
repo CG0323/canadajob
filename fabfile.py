@@ -7,7 +7,7 @@ import time
 # env.use_ssh_config = True
 env.hosts = ['52.52.134.48']
 env.user = 'ec2-user'
-env.key_filename = '/users/wangchun/Downloads/development/cg007.pem'
+env.key_filename = 'C:\Users\mac\Documents\cg007.pem'
 
 # code_dir='/var/www/deploy-stage'
 # app_dir='/var/www/application'
@@ -25,8 +25,8 @@ def push():
 
 def server_pull():
     with cd('~/canadajob'):   #cd用于进入某个目录
-        run('git add --a') 
-        run("git commit-m 'auto_commit_with_fabric'")
+        # run('git add --a') 
+        # run("git commit -m 'auto_commit_with_fabric'")
         run('git pull')  #远程操作用run
         run('sudo chmod -R 777 ~/canadajob')
         
