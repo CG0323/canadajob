@@ -16,6 +16,10 @@ for job in jobs:
     read_at = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     if job["read_at"] is not None:
       read_at = job["read_at"].strftime('%Y-%m-%d %H:%M:%S')
+    title = job["title"]
+    title = title.replace(".NetDeveloper","")
+    title = title.replace("Developer.Net","")
+    title = title.replace("DeveloperDeveloper","Developer")
     data = {"readAt": read_at, "postAt": job["post_at"].strftime('%Y-%m-%d %H:%M:%S'), "title": job["title"], "employer":job["employer"], "province":job["province"], "city":job["city"], "url":job["rurl"], "content": content}
     r = requests.post(url, json = data)
     print r.text
