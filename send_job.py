@@ -6,8 +6,8 @@ import datetime,time
 
 url = 'http://60.205.216.128:8080/api/jobs'
 
-requests.delete(url+'/all')
-set_all_sent_false()
+# requests.delete(url+'/all')
+# set_all_sent_false()
 jobs = get_new_valid_drafts()
 
 for job in jobs:
@@ -22,7 +22,8 @@ for job in jobs:
     title = title.replace(".NETDeveloper","")
     title = title.replace("Developer.NET","")
     title = title.replace("DeveloperDeveloper","Developer")
-    data = {"readAt": read_at, "postAt": job["post_at"].strftime('%Y-%m-%d %H:%M:%S'), "title": title, "employer":job["employer"], "province":job["province"], "city":job["city"], "url":job["rurl"], "content": content}
+    employer = job["employer"].replace("Found on:","")
+    data = {"readAt": read_at, "postAt": job["post_at"].strftime('%Y-%m-%d %H:%M:%S'), "title": title, "employer":employer, "province":job["province"], "city":job["city"], "url":job["rurl"], "content": content}
     r = requests.post(url, json = data)
     print "sent job id = " + str(job["id"])
     print r.status_code
