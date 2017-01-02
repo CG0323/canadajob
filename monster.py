@@ -56,7 +56,7 @@ create_draft_table()
 
 driver = webdriver.PhantomJS()
 
-urls = ["http://www.monster.ca/jobs/search/?q=.net-developer&where=canada&sort=dt.rv.di"]
+urls = ["http://www.monster.ca/jobs/search/?q=.net-developer&where=canada&sort=dt.rv.di","http://www.monster.ca/jobs/search/?q=software-developer&where=canada"]
 
 for url in urls:
     # element = WebDriverWait(driver, 25).until(lambda x : x.find_element_by_css_selector('span[itemprop="addressLocality"]'))

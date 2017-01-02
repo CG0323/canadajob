@@ -12,6 +12,7 @@ from selenium.webdriver.common.proxy import *
 import signal
 import socket
 import random
+from send_job import *
 
 
 
@@ -152,3 +153,4 @@ for i in range(0,total - 1):
         time.sleep(30)
 driver.service.process.send_signal(signal.SIGTERM) # kill the specific phantomjs child proc
 driver.quit()
+send_job()
