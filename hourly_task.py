@@ -13,7 +13,7 @@ import signal
 import socket
 import random
 from send_job import *
-from log-service import *
+from log_service import *
 
 
 
@@ -71,7 +71,7 @@ def cleanJoillico(html):
 def retrieve_content(driver,draft,logger):
     try:
         url = draft["url"]
-        logger.info(url)
+        logger.debug(url)
          #service_args=['--ignore-ssl-errors=true'])
         driver.set_page_load_timeout(30)
         driver.get(url)
@@ -95,11 +95,11 @@ def retrieve_content(driver,draft,logger):
         time.sleep(5)
 
         if rurl.find("job-openings.monster") != -1:
-            logger.info("monster opening found!")
+            logger.debug("monster opening found!")
             element = WebDriverWait(driver, 5).until(lambda x : x.find_element_by_css_selector(".jobview-section"))
             text = cleanMonsterOpening(driver.page_source)
         elif rurl.find("monster.ca") != -1:
-            logger.info("monster found!")
+            logger.debug("monster found!")
             element = WebDriverWait(driver, 5).until(lambda x : x.find_element_by_id("TrackingJobBody"))
             text = cleanMonster(driver.page_source)
         elif rurl.find("workopolis") != -1 or rurl.find("click.appcast") != -1:
@@ -108,12 +108,12 @@ def retrieve_content(driver,draft,logger):
             element = WebDriverWait(driver, 5).until(lambda x : x.find_element_by_css_selector(".job-view-content-wrapper.js-job-view-header-apply"))
             text = cleanWorkopolis(driver.page_source)
         elif rurl.find("jobillico.com") != -1:
-            logger.info("jobillico found!")
+            logger.debug("jobillico found!")
             # element = WebDriverWait(driver, 30).until(lambda x : x.find_element_by_class_name("clr section jobrequirement"))
             element = WebDriverWait(driver, 5).until(lambda x : x.find_element_by_css_selector(".clr.section.jobrequirement"))
             text = cleanJoillico(driver.page_source)
         elif rurl.find("neuvoo.ca") != -1:
-            logger.info("neuvoo found!")
+            logger.debug("neuvoo found!")
             element = WebDriverWait(driver, 5).until(lambda x : x.find_element_by_id("job-container"))
             text = cleanNeuvoo(driver.page_source)
         else:
@@ -145,7 +145,7 @@ total = min(len(drafts),15)
 logger = get_logger()
 
 for i in range(0,total - 1):
-    logger.info("handle draft No: " + str(count) + "/" + str(total))
+    logger.debug("handle draft No: " + str(count) + "/" + str(total))
     count = count + 1
     try:
         retrieve_content(driver,drafts[i], logger)
