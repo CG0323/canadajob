@@ -7,8 +7,8 @@ import datetime,time
 def send_job():
   url = 'http://60.205.216.128:8080/api/jobs'
 
-  requests.delete(url+'/all')
-  set_all_sent_false()
+  # requests.delete(url+'/all')
+  # set_all_sent_false()
   jobs = get_new_valid_drafts()
 
   for job in jobs:
