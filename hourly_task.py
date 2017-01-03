@@ -13,6 +13,7 @@ import signal
 import socket
 import random
 from send_job import *
+from log-service import *
 
 
 
@@ -67,10 +68,10 @@ def cleanJoillico(html):
     return text
 
 
-def retrieve_content(driver,draft):
+def retrieve_content(driver,draft,logger):
     try:
         url = draft["url"]
-        print url
+        logger.info(url)
          #service_args=['--ignore-ssl-errors=true'])
         driver.set_page_load_timeout(30)
         driver.get(url)
@@ -94,11 +95,11 @@ def retrieve_content(driver,draft):
         time.sleep(5)
 
         if rurl.find("job-openings.monster") != -1:
-            print "monster opening found!"
+            logger.info("monster opening found!")
             element = WebDriverWait(driver, 5).until(lambda x : x.find_element_by_css_selector(".jobview-section"))
             text = cleanMonsterOpening(driver.page_source)
         elif rurl.find("monster.ca") != -1:
-            print "monster found!"
+            logger.info("monster found!")
             element = WebDriverWait(driver, 5).until(lambda x : x.find_element_by_id("TrackingJobBody"))
             text = cleanMonster(driver.page_source)
         elif rurl.find("workopolis") != -1 or rurl.find("click.appcast") != -1:
@@ -107,13 +108,12 @@ def retrieve_content(driver,draft):
             element = WebDriverWait(driver, 5).until(lambda x : x.find_element_by_css_selector(".job-view-content-wrapper.js-job-view-header-apply"))
             text = cleanWorkopolis(driver.page_source)
         elif rurl.find("jobillico.com") != -1:
-            print "jobillico found!"
+            logger.info("jobillico found!")
             # element = WebDriverWait(driver, 30).until(lambda x : x.find_element_by_class_name("clr section jobrequirement"))
             element = WebDriverWait(driver, 5).until(lambda x : x.find_element_by_css_selector(".clr.section.jobrequirement"))
             text = cleanJoillico(driver.page_source)
         elif rurl.find("neuvoo.ca") != -1:
-            print rurl
-            print "neuvoo found!"
+            logger.info("neuvoo found!")
             element = WebDriverWait(driver, 5).until(lambda x : x.find_element_by_id("job-container"))
             text = cleanNeuvoo(driver.page_source)
         else:
@@ -121,14 +121,13 @@ def retrieve_content(driver,draft):
         if text is not None:
             save_content(draft["id"], text)
         else:
-            print "=======failed to load page====="
-            print rurl
-            print "==============================="
+            logger.error("=======failed to load page=====")
+            logger.error(rurl)
+            logger.error("===============================")
         set_draft_refined(draft["id"], rurl)
     except TimeoutException:
-        set_draft_refined(draft["id"], "")
-        
-        print "time out occured"
+        set_draft_refined(draft["id"], "")    
+        logger.error("time out occured")
 
 
 time.sleep(120) # wait 2 minutes after reboot
@@ -143,12 +142,13 @@ drafts = get_recent_drafts()
 create_content_table()
 count = 1
 total = min(len(drafts),15)
+logger = get_logger()
 
 for i in range(0,total - 1):
-    print "handle draft No: " + str(count) + "/" + str(total)
+    logger.info("handle draft No: " + str(count) + "/" + str(total))
     count = count + 1
     try:
-        retrieve_content(driver,drafts[i])
+        retrieve_content(driver,drafts[i], logger)
     finally:
         time.sleep(30)
 driver.service.process.send_signal(signal.SIGTERM) # kill the specific phantomjs child proc
