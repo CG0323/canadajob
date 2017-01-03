@@ -28,7 +28,7 @@ def send_job():
       employer = job["employer"].replace("Found on:","")
       data = {"readAt": read_at, "postAt": job["post_at"].strftime('%Y-%m-%d %H:%M:%S'), "title": title, "employer":employer, "province":job["province"], "city":job["city"], "url":job["rurl"], "content": content}
       r = requests.post(url, json = data)
-      logger.info("sent job id = " + str(job["id"] + ",title = " + job["title"])
+      logger.info("sent job id = " + str(job["id"]) + ",title = " + job["title"])
       set_draft_sent(job["id"])
 
 
