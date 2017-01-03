@@ -127,7 +127,7 @@ def retrieve_content(driver,draft,logger):
         set_draft_refined(draft["id"], rurl)
     except TimeoutException:
         set_draft_refined(draft["id"], "")    
-        logger.error("time out occured")
+        logger.error("time out occured, url is: %s",url)
 
 
 time.sleep(120) # wait 2 minutes after reboot
