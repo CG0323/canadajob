@@ -5,7 +5,7 @@ import json
 import datetime,time
 from time import mktime
 from orm import *
-from log-service import *
+from log_service import *
 
 class MyEncoder(json.JSONEncoder):
     def default(self, obj):

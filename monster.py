@@ -7,7 +7,7 @@ from time import mktime
 from orm import *
 import signal
 from selenium.webdriver.support.ui import WebDriverWait
-from log-service import *
+from log_service import *
 
 # class MyEncoder(json.JSONEncoder):
 #     def default(self, obj):
