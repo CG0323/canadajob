@@ -54,7 +54,7 @@ def readPage(text):
             add_draft(job["read_at"], job["date"], job["month"], job["title"], job["employer"], job["address"]["province"], job["address"]["city"], job["link"])
             logger.debug("add draft to aws db, job title is:%s",job["title"])
         except Exception, e:
-            logger.debug("Parse job element failed %s", e.message)
+            logger.debug("[Monster] Parse job element failed %s", e.message)
 create_draft_table()
 
 driver = webdriver.PhantomJS()

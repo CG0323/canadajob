@@ -30,5 +30,7 @@ def send_job():
       r = requests.post(url, json = data)
       logger.info("sent job id = " + str(job["id"]) + ",title = " + job["title"])
       set_draft_sent(job["id"])
-
+  
+  r1 = requests.delete(url + "/clean")
+  logger.info("Cleaned %s irrevelant jobs", r1.text)
 
