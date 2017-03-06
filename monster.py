@@ -59,7 +59,7 @@ create_draft_table()
 
 driver = webdriver.PhantomJS()
 
-urls = ["http://www.monster.ca/jobs/search/?q=.net-developer&where=canada&sort=dt.rv.di","http://www.monster.ca/jobs/search/?q=software-developer&where=canada"]
+urls = ["https://www.monster.ca/jobs/search/?q=angular&where=canada&sort=dt.rv.di","http://www.monster.ca/jobs/search/?q=.net-developer&where=canada&sort=dt.rv.di","http://www.monster.ca/jobs/search/?q=software-developer&where=canada"]
 
 
 
