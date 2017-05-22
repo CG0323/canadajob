@@ -58,7 +58,7 @@ create_draft_table()
 
 driver = webdriver.PhantomJS()
 
-urls = ["http://neuvoo.ca/jobs/?k=software+developer&l=quebec&f=24h&p=1&r=15&duc=&v=&source="]
+urls = ["http://neuvoo.ca/jobs/?k=software+developer&l=ottawa&f=24h&p=1&r=15&duc=&v=&source=","http://neuvoo.ca/jobs/?k=.NET+developer&l=ottawa&f=24h&p=1&r=15&duc=&v=&source=","http://neuvoo.ca/jobs/?k=Node.js+developer&l=ottawa&f=24h&p=1&r=15&duc=&v=&source="]
 
 for url in urls:
     driver.get(url)
